@@ -12,8 +12,6 @@ sysctl net.ipv4.ip_forward net.ipv6.conf.all.forwarding
 echo -e "\n=== INTERFACES DE RED DISPONIBLES ==="
 ip -br link
 
-echo -e "\n=== VERIFICACIÓN DE PAQUETES Y GRUPOS RPM ==="
-rpm -qa | grep -E "^(iproute|iptables|nftables|dnsmasq|firewalld|NetworkManager|bind-utils|net-tools)" | sort
-
-echo -e "\n=== GRUPOS DE PAQUETES DE RED INSTALADOS ==="
-dnf group list installed
+echo -e "\n=== ESTADO DE ZONAS Y NAT (FIREWALLD / NFTABLES) ==="
+firewall-cmd --get-active-zones || true
+nft list ruleset | grep -i masquerade || true
