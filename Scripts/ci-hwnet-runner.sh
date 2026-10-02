@@ -35,11 +35,17 @@ if [ ! -x "${TEST_BINARY_PATH}" ]; then
     exit 1
 fi
 
+# 4. Verificación previa de red L2/L3 (Herramienta especializada)
+TOOLS_DIR="$(dirname "$0")/Tools"
+if [ -x "${TOOLS_DIR}/net-preflight-check.sh" ]; then
+    "${TOOLS_DIR}/net-preflight-check.sh" "${MANIFEST_FILE}"
+fi
+
 echo "=============================================="
 echo "🧪 Ejecutando Test LTP sobre Módulo Kernel..."
 echo "=============================================="
 
-# Funció de limpieza para garantizar rmmod al salir
+# 5. Funció de limpieza para garantizar rmmod al salir
 cleanup() {
     if lsmod | grep -q "^${MODULE_NAME} "; then
         echo "🧹 Descargando módulo kernel: ${MODULE_NAME}..."
@@ -49,17 +55,17 @@ cleanup() {
 trap cleanup EXIT
 
 
-# 4. Desinstalación previa por seguridad
+# 6. Desinstalación previa por seguridad
 if lsmod | grep -q "^${MODULE_NAME} "; then
     echo "🧹 Desinstalando instancia previa de ${MODULE_NAME}..."
     sudo rmmod "${MODULE_NAME}"
 fi
 
-# 5. Carga del módulo
+# 7. Carga del módulo
 echo "🆙 Cargando módulo kernel: ${MODULE_NAME}..."
 sudo insmod "${MODULE_KO_PATH}"
 
-# 6. Ejecución de la prueba LTP
+# 8. Ejecución de la prueba LTP
 echo "🚀 Ejecutando test LTP: ${TEST_BINARY_NAME}..."
 
 if [[ "${TEST_BINARY_NAME}" == *r ]]; then
