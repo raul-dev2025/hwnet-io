@@ -33,13 +33,16 @@ for vm in "${TARGET_VMS[@]}"; do
   fi
 done
 
+# 2. Comprobaciones de red en Sandbox
+echo "📡 Verificando topología de red y conectividad L3..."
+if ! ssh "${SANDBOX_HOST}" "${REMOTE_SCRIPTS}/Tools/net-check.sh"; then
+    echo "❌ Error crítico en comprobación de red. Abortando pruebas."
     echo "🛑 Liberando infraestructura..."
-    echo "=============================================="
-    Scripts/Envs/vm-stop.sh "${VM_NAME}"
+    Scripts/Envs/vm-stop-lan.sh
     exit 1
 fi
 
-# 2. Consultar el manifiesto para determinar el log KO/LTP
+# 3. Consultar el manifiesto para determinar el log KO/LTP
 TARGET_TYPE=$(ssh "${SANDBOX_HOST}" "grep '^TARGET_TYPE=' '${MANIFEST_FILE}' | cut -d'=' -f2 | tr -d '\"'")
 RUNNER_TYPE=$(ssh "${SANDBOX_HOST}" "grep '^RUNNER_TYPE=' '${MANIFEST_FILE}' | cut -d'=' -f2 | tr -d '\"'")
 
