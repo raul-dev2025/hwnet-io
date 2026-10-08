@@ -18,13 +18,21 @@ echo "🚀 Arrancando entorno de pruebas (ACME, CIA)..."
 echo "==============================================="
 
 # 1. Arrancar vm y comprobar puerto 22
-if ! Scripts/Envs/vm-start.sh "${VM_NAME}"; then
+if ! Scripts/Envs/vm-start-lan.sh "${VM_NAME}"; then
   echo "❌ Error: Falla al iniciar la VM ${VM_NAME}. Abortando."
   exit 1
 fi
 
-if ! Scripts/Envs/vm-poll.sh "${SANDBOX_HOST}" 22 30; then
-    echo "❌ Error: La VM no levantó el servicio SSH a tiempo."
+for vm in "${TARGET_VMS[@]}"; do
+  if ! Scripts/Envs/vm-poll.sh "${vm}" 22 30; then
+      echo "❌ Error: La VM no levantó el servicio SSH a tiempo."
+      echo "🛑 Liberando infraestructura..."
+      echo "=============================================="
+      Scripts/Envs/vm-stop-lan.sh
+      exit 1
+  fi
+done
+
     echo "🛑 Liberando infraestructura..."
     echo "=============================================="
     Scripts/Envs/vm-stop.sh "${VM_NAME}"
