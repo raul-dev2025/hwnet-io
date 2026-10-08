@@ -6,7 +6,7 @@
 #
 set -e
 
-MANIFEST_FILE="${1:-/mnt/build-output/Repos/hwnet-io.git/build_state.env}"
+MANIFEST_FILE="${MANIFEST_FILE:-/mnt/build-output/Repos/hwnet-io.git/build_state.env}"
 
 LOG_DIR="/var/log/Sandbox/hwnet-io"
 KO_LOG="${LOG_DIR}/ko_latest.log"
