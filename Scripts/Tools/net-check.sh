@@ -50,6 +50,55 @@ run_net_preflight() {
 
     echo "🔍 IP detectada en ${TEST_IFACE}: ${SANDBOX_IP}"
 
+    # =======================================================
+    # Punto 3: Validaciones por Clase de Red y Rango de Bits
+    # =======================================================
+    local first_octet
+    first_octet=$(echo "${SANDBOX_IP}" | cut -d'.' -f1)
+
+    case "${TARGET_NET_CLASS}" in
+        A)
+            if ! [ "${first_octet}" -lt 128 ]; then
+                echo "❌ Error: La IP ${SANDBOX_IP} no pertenece a la Clase A esperada."
+                exit 1
+            fi
+            ;;
+        B)
+            if ! [ "${first_octet}" -ge 128 ] && [ "${first_octet}" -le 191 ]; then
+                echo "❌ Error: La IP ${SANDBOX_IP} no pertenece a la Clase B esperada."
+                exit 1
+            fi
+            ;;
+        C)
+            if ! [ "${first_octet}" -ge 192 ] && [ "${first_octet}" -le 223 ]; then
+                echo "❌ Error: La IP ${SANDBOX_IP} no pertenece a la Clase C esperada."
+                exit 1
+            fi
+            ;;
+        D)
+            if ! [ "${first_octet}" -ge 224 ] && [ "${first_octet}" -le 239 ]; then
+                echo "❌ Error: La IP ${SANDBOX_IP} no pertenece a la Clase D esperada."
+                exit 1
+            fi
+            ;;
+        E)
+            if ! [ "${first_octet}" -ge 240 ] && [ "${first_octet}" -le 254 ]; then
+                echo "❌ Error: La IP ${SANDBOX_IP} no pertenece a la Clase E esperada."
+                exit 1
+            fi
+            ;;
+        *)
+            echo "❌ Error: Clase de red '${TARGET_NET_CLASS}' no soportada o inválida."
+            exit 1
+            ;;
+    esac
+
+    # Validación de pertenencia al prefijo especificado
+    if [[ "${SANDBOX_IP}" != ${TARGET_NET_PREFIX}.* ]]; then
+        echo "❌ Error: La dirección IP (${SANDBOX_IP}) no pertenece al prefijo esperado (${TARGET_NET_PREFIX}.0/24)."
+        exit 1
+    fi
+
     generate_ltp_manifest
 }
 
