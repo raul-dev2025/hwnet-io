@@ -6,6 +6,9 @@
 #
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/ci-manifest.sh"
+
 run_net_preflight() {
     local manifest_file="${USER_FILE:-/mnt/build-output/Repos/hwnet-io.git/build_state.env}"
     local required_vars=("TEST_IFACE" "ROUTER_IP" "TARGET_NET_CLASS" "TARGET_NET_PREFIX")
