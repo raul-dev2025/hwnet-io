@@ -4,12 +4,13 @@
 #
 # ci-manifest.sh - Biblioteca de generación de manifiesto para build_state.env
 #
+MANIFEST_FILE="/mnt/build-output/Repos/hwnet-io.git/build_state.env"
 
 # Genera el manifiesto para entregables de tipo KO
 generate_ko_manifest() {
-    local manifest_file="$1"
-    local module_name="$2"
-    local module_ko_path="$3"
+    local manifest_file="${USER_FILE:-${MANIFEST_FILE}}"
+    local module_name="$1"
+    local module_ko_path="$2"
 
     # Purgado preventivo para asegurar atomicidad
     rm -f "${manifest_file}"
