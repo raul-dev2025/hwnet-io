@@ -59,19 +59,19 @@ REMOTE_LOG_PATH="/var/log/Sandbox/hwnet-io/${LOG_FILENAME}"
 
 echo "ℹ️ Target detectado: [${TARGET_TYPE:-DESCONOCIDO}]"
 
-# 3. Purgado defensivo de logs locales
+# 4. Purgado defensivo de logs locales
 mkdir -p "${LOCAL_LOG_DIR}"
 rm -f "${LOCAL_RUN_LOG}"
 
 
-# 4. Definición del Runner por RUNNER_TYPE
+# 5. Definición del Runner por RUNNER_TYPE
 if [ "${RUNNER_TYPE}" = "KMOD_TEST" ]; then
   RUNNER_SCRIPT="ci-kmod-runner.sh"
 else
   RUNNER_SCRIPT="ci-runner.sh"
 fi
 
-# 5. Invocación SSH con captura de salida y evaluación de retorno
+# 6. Invocación SSH con captura de salida y evaluación de retorno
 if ssh "${SANDBOX_HOST}" "${REMOTE_SCRIPTS}/${RUNNER_SCRIPT}"; then
     echo "✅ TEST RUNNER SUCCESSFUL [${RUNNER_SCRIPT}]"
 else
@@ -79,7 +79,7 @@ else
     EXEC_STATUS=1
 fi
 
-# Extraemos el log nativo generado dentro de la Sandbox
+# 7. Extraemos el log nativo generado dentro de la Sandbox
 if ssh "${SANDBOX_HOST}" "cat '${REMOTE_LOG_PATH}'" > "${LOCAL_RUN_LOG}" 2>/dev/null; then
     echo "📄 Log guardado correctamente en: ${LOCAL_RUN_LOG}"
 else
