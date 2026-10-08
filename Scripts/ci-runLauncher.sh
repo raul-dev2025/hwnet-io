@@ -88,7 +88,7 @@ fi
 
 echo "🛑 Liberando infraestructura de compilación..."
 
-STOP_OUTPUT=$(Scripts/Envs/vm-stop.sh "${VM_NAME}")
+STOP_OUTPUT=$(Scripts/Envs/vm-stop-lan.sh)
 echo "${STOP_OUTPUT}"
 
 if echo "${STOP_OUTPUT}" | grep -q "apagada con éxito"; then
