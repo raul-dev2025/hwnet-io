@@ -33,6 +33,23 @@ run_net_preflight() {
         exit 1
     fi
 
+    # =================================================
+    # Punto 2: Descubrimiento L3 Dinámico en el Sandbox
+    # =================================================
+    if ! ip link show dev "${TEST_IFACE}" > /dev/null 2>&1; then
+        echo "❌ Error: La interfaz de red '${TEST_IFACE}' no está disponible en el sistema."
+        exit 1
+    fi
+
+    SANDBOX_IP=$(ip -4 addr show dev "${TEST_IFACE}" | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -n1)
+
+    if [ -z "${SANDBOX_IP}" ]; then
+        echo "❌ Error: No se detectó ninguna dirección IPv4 asignada a la interfaz '${TEST_IFACE}'."
+        exit 1
+    fi
+
+    echo "🔍 IP detectada en ${TEST_IFACE}: ${SANDBOX_IP}"
+
     generate_ltp_manifest
 }
 
