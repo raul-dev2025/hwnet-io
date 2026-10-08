@@ -26,20 +26,24 @@ EOF
     echo "✅ Manifiesto KO generado en: ${manifest_file}"
 }
 
-# Genera el manifiesto para entregables de tipo LTP con soporte de clase de red
+# Genera el manifiesto para entregables de tipo LTP
 generate_ltp_manifest() {
-    local manifest_file="$1"
-    local runner_type="$2"
-    local test_name="$3"
-    local test_bin="$4"
-    local module_name="$5"
-    local module_ko_path="$6"
-    local target_class="${7:-C}"            # A, B, C, D, E
-    local target_prefix="${8:-192.168.100.0/24}"
-    local router_ip="${9:-192.168.100.1}"
-    local test_iface="${10:-enp11s0}"
+    local manifest_file="${USER_FILE:-${MANIFEST_FILE}}"
 
-    # Purgado preventivo para asegurar atomicidad
+    # Variables de build y runner
+    local runner_type="${RUNNER_TYPE:-GENERIC}"
+    local test_name="${TEST_NAME:-}"
+    local test_bin="${TEST_BIN:-}"
+    local module_name="${MODULE_NAME:-}"
+    local module_ko_path="${MODULE_KO_PATH:-}"
+    
+    # Declaración de Topología de Red para Preflight
+    local target_class="${TARGET_NET_CLASS:-C}"
+    local target_prefix="${TARGET_NET_PREFIX:-192.168.100}"
+    local router_ip="${ROUTER_IP:-192.168.100.1}"
+    local test_iface="${TEST_IFACE:-enp11s0}"
+    local sandbox_ip="${SANDBOX_IP:-}"
+
     rm -f "${manifest_file}"
 
     cat <<EOF > "${manifest_file}"
@@ -54,6 +58,7 @@ TARGET_NET_CLASS="${target_class}"
 TARGET_NET_PREFIX="${target_prefix}"
 ROUTER_IP="${router_ip}"
 TEST_IFACE="${test_iface}"
+SANDBOX_IP="${sandbox_ip}"
 TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 EOF
 
