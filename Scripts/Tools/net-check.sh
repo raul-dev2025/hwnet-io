@@ -99,6 +99,17 @@ run_net_preflight() {
         exit 1
     fi
 
+    # ==========================================================
+    # Punto 4: Verificación de Conectividad L3 (Pre-flight Check)
+    # ==========================================================
+    echo "📡 Verificando conectividad L3 hacia router-node (${ROUTER_IP})..."
+    if ! ping -c 2 -W 2 "${ROUTER_IP}" > /dev/null 2>&1; then
+        echo "❌ Error crítico: Sin respuesta L3 de ${ROUTER_IP}. Abortando ejecución."
+        exit 1
+    fi
+    echo "✅ Conectividad L3 confirmada con ${ROUTER_IP}."
+
+    # Delegación de regeneración del manifiesto sin parámetros posicionales
     generate_ltp_manifest
 }
 
