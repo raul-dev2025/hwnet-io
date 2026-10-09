@@ -6,7 +6,7 @@
 #
 VM_NAME="acme-sandbox"
 SANDBOX_HOST="sandbox"
-TARGET_VMS=("acme-sandbox" "router-node")
+TARGET_VMS=("sandbox" "router-node")
 NET_CHECK="Scripts/Tools/net-check.sh"
 REMOTE_SCRIPTS="/mnt/build-output/Repos/hwnet-io.git/Scripts"
 MANIFEST_FILE="/mnt/build-output/Repos/hwnet-io.git/build_state.env"
