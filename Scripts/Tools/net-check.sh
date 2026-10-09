@@ -32,8 +32,8 @@ run_net_preflight() {
     done
 
     if [ ${#missing_vars[@]} -ne 0 ]; then
-        echo "❌ Error de manifiesto: Faltan las siguientes variables críticas de red: ${missing_vars[*]}"
-        echo "💡 Asegúrese de que el orquestador ha volcado la topología del router-node en ${manifest_file}"
+        pprintf "❌ Error de manifiesto: Faltan variables críticas de red:\n %$\n" "${missing_vars[*]}"
+        pprintf "💡 Comprueba la topología del router-node:\n %s\n" "${manifest_file}"
         exit 1
     fi
 
