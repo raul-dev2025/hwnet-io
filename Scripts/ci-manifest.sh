@@ -12,6 +12,13 @@ generate_ko_manifest() {
     local module_name="$1"
     local module_ko_path="$2"
 
+    # Declaración de Topología de Red para Preflight Check
+    local target_class="${TARGET_NET_CLASS:-C}"
+    local target_prefix="${TARGET_NET_PREFIX:-192.168.100}"
+    local router_ip="${ROUTER_IP:-192.168.100.1}"
+    local test_iface="${TEST_IFACE:-enp11s0}"
+    local sandbox_ip="${SANDBOX_IP:-}"
+
     # Purgado preventivo para asegurar atomicidad
     rm -f "${manifest_file}"
 
@@ -20,6 +27,11 @@ BUILD_STATUS="SUCCESS"
 TARGET_TYPE="KO"
 MODULE_NAME="${module_name}"
 MODULE_KO_PATH="${module_ko_path}"
+TARGET_NET_CLASS="${target_class}"
+TARGET_NET_PREFIX="${target_prefix}"
+ROUTER_IP="${router_ip}"
+TEST_IFACE="${test_iface}"
+SANDBOX_IP="${sandbox_ip}"
 TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 EOF
 
