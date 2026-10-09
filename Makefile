@@ -17,8 +17,8 @@ CORE_DIR ?= src/core
 
 # Compilación explícita del módulo
 module:
-	$(MAKE) -C $(KDIR) M=$(PWD)/$(CORE_DIR) modules
-# $(MAKE) -C $(KDIR) M=$(PWD)/$(DRIVER_DIR) modules
+	$(MAKE) -C $(KDIR) M=$(CURDIR)/$(CORE_DIR) modules
+# $(MAKE) -C $(KDIR) M=$(CURDIR)/$(DRIVER_DIR) modules
 
 # Compilación explícita de pruebas delegando en la jerarquía tests/
 test:
@@ -26,8 +26,8 @@ test:
 
 # Limpieza global sin fallar si un directorio no existe o está limpio
 clean:
-	$(MAKE) -C $(KDIR) M=$(PWD)/$(CORE_DIR) clean 2>/dev/null || true
-	$(MAKE) -C $(KDIR) M=$(PWD)/$(DRIVER_DIR) clean 2>/dev/null || true
+	$(MAKE) -C $(KDIR) M=$(CURDIR)/$(CORE_DIR) clean 2>/dev/null || true
+	$(MAKE) -C $(KDIR) M=$(CURDIR)/$(DRIVER_DIR) clean 2>/dev/null || true
 	$(MAKE) -C tests clean 2>/dev/null || true
 
 
