@@ -32,7 +32,7 @@ run_net_preflight() {
     done
 
     if [ ${#missing_vars[@]} -ne 0 ]; then
-        printf "❌ Error de manifiesto: Faltan variables críticas de red:\n %$\n" "${missing_vars[*]}"
+        printf "❌ Error de manifiesto: Faltan variables críticas de red:\n %s\n" "${missing_vars[*]}"
         printf "💡 Comprueba la topología del router-node:\n %s\n" "${manifest_file}"
         exit 1
     fi
