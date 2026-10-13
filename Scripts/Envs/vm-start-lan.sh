@@ -2,12 +2,13 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2026 Raúl Vílchez Ruiz <raulmicrosistemas@gmail.com>
 #
-# vm-start.sh - Arranca una VM verificando exclusión mutua
+# vm-start-lan.sh - Arranca el entorno LAN respetando exclusión mutua mediante vm-start.sh
 #
 set -e
 
-DEBUG="${DEBUG:-1}" # Cambiar a 0 o eliminar cuando el pipeline esté validado
-TARGET_VMS=("router-node" "acme-sandbox")
+DEBUG="${DEBUG:-1}"
+TARGET_VMS=("router-node" "sandbox")
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 iv_virsh() {
     sudo -u virt-admin virsh --connect qemu:///system "$@"
