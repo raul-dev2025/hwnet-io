@@ -19,6 +19,15 @@ if [ -z "${VM_TARGET}" ]; then
     exit 1
 fi
 
+# VM's Group definition
+is_lab_vm() {
+  [ "$1" = "buildlab" ]
+}
+
+is_lan_vm() {
+  [ "$1" = "sandbox" ] || [ "$1" = "router-node" ]
+}
+
 # 1. Comprobar si hay alguna VM en ejecución
 ACTIVE_VMS=$(iv_virsh list --name | grep -v '^$' || true)
 
