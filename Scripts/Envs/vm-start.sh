@@ -45,6 +45,11 @@ if is_lab_vm "${VM_TARGET}"; then
       iv_virsh list --all --title
       exit 1
     fi
+  done
+elif is_lan_vm "${VM_TARGET}"; then
+  if echo "${ACTIVE_VMS}" | grep -q "^buildlab$"; then
+    [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Conflicto de exclusión mutua: Imposible arrancar [${VM_TARGET}]. El laboratorio [buildlab] se encuentra en ejecución."
+    iv_virsh list --all --title
     exit 1
   fi
 fi
