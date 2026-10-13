@@ -22,15 +22,9 @@ if echo "${ACTIVE_VMS}" | grep -q "^buildlab$"; then
     exit 1
 fi
 
-for vm in "${TARGET_VMS[@]}"; do
-    ACTIVE_VMS=$(iv_virsh list --name | grep -v '^$' || true)
-
-    if echo "${ACTIVE_VMS}" | grep -q "^${vm}$"; then
-        [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] La VM [${vm}] ya se encuentra activa."
-    else
-        [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Iniciando VM [${vm}]..."
-        iv_virsh start "${vm}"
-    fi
+[ "${DEBUG}" -eq 1 ] && echo "==============================================="
+[ "${DEBUG}" -eq 1 ] && echo "🚀 Arrancando entorno LAN [router-node, sandbox]..."
+[ "${DEBUG}" -eq 1 ] && echo "==============================================="
 
     # Confirmación de estado activo
     if ! iv_virsh list --name | grep -q "^${vm}$"; then
