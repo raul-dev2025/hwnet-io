@@ -14,9 +14,11 @@ iv_virsh() {
     sudo -u virt-admin virsh --connect qemu:///system "$@"
 }
 
-# Validador técnico de parámetro para el orquestador
-if [ -z "${TARGET_VMS}" ]; then
-    [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Error interno: Asignación de VM_TARGET vacía en la llamada."
+# 1. Comprobación de exclusión mutua global previa: El entorno LAN no puede arrancar si buildlab está activo
+ACTIVE_VMS=$(iv_virsh list --name | grep -v '^$' || true)
+if echo "${ACTIVE_VMS}" | grep -q "^buildlab$"; then
+    [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Conflicto de exclusión mutua: Imposible arrancar el entorno LAN. El laboratorio [buildlab] se encuentra en ejecución."
+    iv_virsh list --all --title
     exit 1
 fi
 
