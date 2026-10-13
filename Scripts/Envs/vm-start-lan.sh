@@ -26,11 +26,9 @@ fi
 [ "${DEBUG}" -eq 1 ] && echo "🚀 Arrancando entorno LAN [router-node, sandbox]..."
 [ "${DEBUG}" -eq 1 ] && echo "==============================================="
 
-    # Confirmación de estado activo
-    if ! iv_virsh list --name | grep -q "^${vm}$"; then
-        [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Error: La VM [${vm}] no alcanzó el estado activo."
-        exit 1
-    fi
+# 2. Delegación estricta y exclusiva en el script de arranque validado
+for vm in "${TARGET_VMS[@]}"; do
+    "${SCRIPT_DIR}/vm-start.sh" "${vm}"
 done
 
-[ "${DEBUG}" -eq 1 ] && echo "[DEBUG] VM [${TARGET_VMS}] arrancada con éxito."
+[ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Entorno LAN [router-node sandbox] arrancado con éxito."
