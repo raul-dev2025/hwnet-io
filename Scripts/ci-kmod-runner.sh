@@ -7,10 +7,10 @@
 #
 set -e
 
-MANIFEST_FILE="${MANIFEST_FILE:-/mnt/build-output/Repos/hwnet-io.git/build_state.env}"
-
 LOG_DIR="/var/log/Sandbox/hwnet-io"
 RUN_LOG="${LOG_DIR}/ltp_latest.log"
+
+MANIFEST_FILE="${MANIFEST_FILE:-${LOG_DIR}/build_state.env}"
 
 # 1. Validar existencia del manifiesto
 if [ ! -f "${MANIFEST_FILE}" ]; then
