@@ -56,12 +56,12 @@ else
   [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Advertencia: La VM [${VM_TARGET}] no pertenece a ningún grupo conocido de exclusión."
 fi
 
-# 2. Arrancar la máquina virtual solicitada
+# 3. Arrancar la máquina virtual solicitada
 if ! echo "${ACTIVE_VMS}" | grep -q "^${VM_TARGET}$"; then
   iv_virsh start "${VM_TARGET}"
 fi
 
-# 3. Confirmación técnica de estado para el invocador
+# 4. Confirmación técnica de estado para el invocador
 if ! iv_virsh list --name | grep -q "^${VM_TARGET}$"; then
     [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Error: La VM [${VM_TARGET}] no alcanzó el estado activo."
     exit 1
