@@ -9,7 +9,7 @@ SANDBOX_HOST="sandbox"
 TARGET_VMS=("sandbox" "router-node")
 NET_CHECK="Scripts/Tools/net-check.sh"
 REMOTE_SCRIPTS="/mnt/build-output/Repos/hwnet-io.git/Scripts"
-MANIFEST_FILE="/mnt/build-output/Repos/hwnet-io.git/build_state.env"
+MANIFEST_FILE="/var/log/BuilderLogs/hwnet-io/build_state.env"
 
 LOCAL_LOG_DIR="/mnt/datos_raul/Logs/Sandbox/hwnet-io"
 
