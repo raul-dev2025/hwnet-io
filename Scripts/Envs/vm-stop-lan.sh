@@ -8,6 +8,7 @@ set -e
 
 DEBUG="${DEBUG:-1}"
 TARGET_VMS=("acme-sandbox" "router-node")
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 iv_virsh() {
     sudo -u virt-admin virsh --connect qemu:///system "$@"
@@ -19,18 +20,7 @@ if [ -z "${TARGET_VMS[*]}" ]; then
 fi
 
 for vm in "${TARGET_VMS[@]}"; do
-    if iv_virsh list --name | grep -q "^${vm}$"; then
-        [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Apagando VM [${vm}]..."
-        iv_virsh shutdown "${vm}"
-
-        # Espera activa hasta que la VM pase a estado shut off
-        while iv_virsh list --name | grep -q "^${vm}$"; do
-            sleep 1
-        done
-        [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] VM [${vm}] apagada con éxito."
-    else
-        [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] La VM [${vm}] ya se encuentra apagada."
-    fi
+  "${SCRIPT_DIR}/vm-stop.sh" "${vm}"
 done
 
-[ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Entorno multinodo [${TARGET_VMS[*]}] liberado con éxito."
+[ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Entorno LAN [${TARGET_VMS[*]}] liberado con éxito."
