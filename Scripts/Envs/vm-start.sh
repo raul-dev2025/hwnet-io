@@ -52,6 +52,8 @@ elif is_lan_vm "${VM_TARGET}"; then
     iv_virsh list --all --title
     exit 1
   fi
+else
+  [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Advertencia: La VM [${VM_TARGET}] no pertenece a ningún grupo conocido de exclusión."
 fi
 
 # 2. Arrancar la máquina virtual solicitada
