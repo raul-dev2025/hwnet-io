@@ -7,7 +7,7 @@
 set -e
 
 DEBUG="${DEBUG:-1}"
-TARGET_VMS=("router-node" "sandbox")
+TARGET_VMS=("router-node" "acme-sandbox")
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 iv_virsh() {
@@ -21,10 +21,6 @@ if echo "${ACTIVE_VMS}" | grep -q "^buildlab$"; then
     iv_virsh list --all --title
     exit 1
 fi
-
-[ "${DEBUG}" -eq 1 ] && echo "==============================================="
-[ "${DEBUG}" -eq 1 ] && echo "🚀 Arrancando entorno LAN [router-node, sandbox]..."
-[ "${DEBUG}" -eq 1 ] && echo "==============================================="
 
 # 2. Delegación estricta y exclusiva en el script de arranque validado
 for vm in "${TARGET_VMS[@]}"; do
