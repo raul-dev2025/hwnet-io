@@ -4,7 +4,7 @@
 #
 # ci-manifest.sh - Biblioteca de generación de manifiesto para build_state.env
 #
-MANIFEST_FILE="/mnt/build-output/Repos/hwnet-io.git/build_state.env"
+MANIFEST_FILE="/var/log/BuilderLogs/hwnet-io/build_state.env"
 
 # Genera el manifiesto para entregables de tipo KO
 generate_ko_manifest() {
