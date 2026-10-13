@@ -10,7 +10,7 @@ set -e
 LOG_DIR="/var/log/Sandbox/hwnet-io"
 RUN_LOG="${LOG_DIR}/ltp_latest.log"
 
-MANIFEST_FILE="${MANIFEST_FILE:-/mnt/datos_raul/Logs/Buildlab/hwnet-io/build_state.env}"
+MANIFEST_FILE="${MANIFEST_FILE:-/var/log/BuilderLogs/hwnet-io/build_state.env}"
 
 
 # 1. Validar existencia del manifiesto
