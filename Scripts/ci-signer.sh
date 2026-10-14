@@ -35,7 +35,7 @@ if [ "${BUILD_TYPE}" = "KO" ]; then
     fi
 
     # 3. Delegar la generación del manifiesto tras la firma exitosa
-    generate_ko_manifest
+    generate_ko_manifest "${MODULE_NAME}" "${MODULE_KO_PATH}"
 
 elif [ "${BUILD_TYPE}" = "LTP" ]; then
     # 1. Localizar prioritariamente el orquestador (*suite*); si no existe, tomar el primer binario
