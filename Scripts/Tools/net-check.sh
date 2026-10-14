@@ -115,7 +115,7 @@ run_net_preflight() {
 
     # Delegación de regeneración del manifiesto sin parámetros posicionales
     if [ "${TARGET_TYPE}" = "KO" ]; then
-        generate_ko_manifest "${MODULE_NAME:-}" "${MODULE_KO_PATH:-}"
+        generate_ko_manifest "${MODULE_NAME}" "${MODULE_KO_PATH}"
     elif [ "${TARGET_TYPE}" = "LTP" ]; then
         generate_ltp_manifest
     else
