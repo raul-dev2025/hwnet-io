@@ -10,7 +10,7 @@ MANIFEST_FILE="/var/log/BuilderLogs/hwnet-io/build_state.env"
 generate_ko_manifest() {
     echo "⚠️ ALERTA: generate_ko_manifest fue llamada. Pila:" >&2
     caller 0 >&2
-    caller 1 >&2
+    caller 1 || true >&2
     local manifest_file="${USER_FILE:-${MANIFEST_FILE}}"
     local module_name="$1"
     local module_ko_path="$2"
@@ -45,7 +45,7 @@ EOF
 generate_ltp_manifest() {
     echo "⚠️ ALERTA: generate_ltp_manifest fue llamada. Pila:" >&2
     caller 0 >&2
-    caller 1 >&2
+    caller 1 || true >&2
     local manifest_file="${USER_FILE:-${MANIFEST_FILE}}"
 
     # Variables de build y runner
