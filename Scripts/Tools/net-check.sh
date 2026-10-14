@@ -114,7 +114,14 @@ run_net_preflight() {
     echo "✅ Conectividad L3 confirmada con ${ROUTER_IP}."
 
     # Delegación de regeneración del manifiesto sin parámetros posicionales
-    generate_ltp_manifest
+    if [ "${TARGET_TYPE}" = "KO" ]; then
+        generate_ko_manifest "${MODULE_NAME:-}" "${MODULE_KO_PATH:-}"
+    elif [ "${TARGET_TYPE}" = "LTP" ]; then
+        generate_ltp_manifest
+    else
+        echo "❌ Error: TARGET_TYPE desconocido [${TARGET_TYPE}]"
+        exit 1
+    fi
 }
 
 # Ejecución del bloque principal
