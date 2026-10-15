@@ -25,7 +25,7 @@ is_lab_vm() {
 }
 
 is_lan_vm() {
-  [ "$1" = "sandbox" ] || [ "$1" = "router-node" ]
+  [ "$1" = "acme-sandbox" ] || [ "$1" = "router-node" ]
 }
 
 # 1. Comprobar si hay alguna VM en ejecución
@@ -39,7 +39,7 @@ fi
 
 # 2. Validación estricta de exclusión mutua según el grupo de destino
 if is_lab_vm "${VM_TARGET}"; then
-  for lan_vm in sandbox router-node; do
+  for lan_vm in acme-sandbox router-node; do
     if echo "${ACTIVE_VMS}" | grep -q "^${lan_vm}$"; then
       [ "${DEBUG}" -eq 1 ] && echo "[DEBUG] Conflicto de exclusión mutua: Imposible arrancar [${VM_TARGET}]. La VM LAN [${lan_vm}] se encuentra en ejecución."
       iv_virsh list --all --title
