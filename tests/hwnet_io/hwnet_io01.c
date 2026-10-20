@@ -32,6 +32,19 @@ static void cleanup(void)
 
 static void run_test(void)
 {
+  unsigned int ifindex;
+
+  // Probamos de obtener el indice de la interfaz
+  ifindex = if_nametoindex("hwnet_io");
+
+  if (ifindex == 0)
+  {
+    tst_res(TFAIL, "La interfaz de red 'hwnet_io' no se registro");
+  }
+  else
+  {
+    tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
+  }
 }
 static struct tst_test test = {
     .setup = setup,
