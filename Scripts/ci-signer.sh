@@ -69,7 +69,7 @@ elif [ "${BUILD_TYPE}" = "LTP" ]; then
     fi
 
     # 3. Delegar la generación del manifiesto tras la inspección exitosa
-    generate_ltp_manifest
+    generate_ltp_manifest "${RUNNER_TYPE}" "${TEST_NAME}" "${TEST_BIN}" "${MODULE_NAME}" "${MODULE_KO_PATH}"
 
 else
     echo "❌ Error: BUILD_TYPE desconocido [${BUILD_TYPE}]."
