@@ -7,7 +7,7 @@ SUBDIRS := hwnet_io
 
 # Subdirectorio activo configurado en el propio Makefile
 SUBDIR ?= hwnet_io
-TARGET ?= 
+TARGET ?= hwnet_io01
 
 .PHONY: all test clean $(SUBDIRS)
 
