@@ -117,7 +117,7 @@ run_net_preflight() {
     if [ "${TARGET_TYPE}" = "KO" ]; then
         generate_ko_manifest "${MODULE_NAME}" "${MODULE_KO_PATH}"
     elif [ "${TARGET_TYPE}" = "LTP" ]; then
-        generate_ltp_manifest
+        generate_ltp_manifest "${RUNNER_TYPE}" "${TEST_NAME}" "${TEST_BIN}" "${MODULE_NAME}" "${MODULE_KO_PATH}"
     else
         echo "❌ Error: TARGET_TYPE desconocido [${TARGET_TYPE}]"
         exit 1
