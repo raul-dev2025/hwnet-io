@@ -10,7 +10,7 @@ REMOTE_HOST="builder@buildlab"
 REMOTE_ROOT="/mnt/build-output/Repos/hwnet-io.git"
 
 # Opciones: "KO" | "LTP"
-BUILD_TYPE="KO"
+BUILD_TYPE="LTP"
 BINARY_NAME="hwnet_io"
 
 # Rutas de logs (WS y Lab)
