@@ -39,26 +39,26 @@ if [ "${BUILD_TYPE}" = "KO" ]; then
 
 elif [ "${BUILD_TYPE}" = "LTP" ]; then
     # 1. Localizar prioritariamente el orquestador (*suite*); si no existe, tomar el primer binario
-    TEST_BIN=$(find "${REPO_DIR}/tests" -type f -executable ! -name "*.sh" ! -name "Makefile*" -name "*suite*" | head -n 1)
+    TEST_BINARY_PATH=$(find "${REPO_DIR}/tests" -type f -executable ! -name "*.sh" ! -name "Makefile*" -name "*suite*" | head -n 1)
 
-    if [ -z "${TEST_BIN}" ]; then
-        TEST_BIN=$(find "${REPO_DIR}/tests" -type f -executable ! -name "*.sh" ! -name "Makefile*" | head -n 1)
+    if [ -z "${TEST_BINARY_PATH}" ]; then
+        TEST_BINARY_PATH=$(find "${REPO_DIR}/tests" -type f -executable ! -name "*.sh" ! -name "Makefile*" | head -n 1)
     fi
 
-    if [ -z "${TEST_BIN}" ] || [ ! -x "${TEST_BIN}" ]; then
+    if [ -z "${TEST_BINARY_PATH}" ] || [ ! -x "${TEST_BINARY_PATH}" ]; then
         echo "❌ Error: No se encontró ningún binario de test ejecutable en ${REPO_DIR}/tests/"
         exit 1
     fi
 
-    TEST_NAME=$(basename "${TEST_BIN}")
+    TEST_BINARY_NAME=$(basename "${TEST_BINARY_PATH}")
 
     # 2. Determinar el perfil de runner e inspección de dependencias
-    if echo "${TEST_BIN}" | grep -q "/tests/hwnet_io/"; then
+    if echo "${TEST_BINARY_PATH}" | grep -q "/tests/hwnet_io/"; then
         RUNNER_TYPE="KMOD_TEST"
         MODULE_KO_PATH=$(find "${REPO_DIR}/src" -type f -name "*.ko" | head -n 1)
 
         if [ -z "${MODULE_KO_PATH}" ] || [ ! -f "${MODULE_KO_PATH}" ]; then
-            echo "❌ Error: El test ${TEST_NAME} requiere un módulo .ko, pero no se encontró en ${REPO_DIR}/src/"
+            echo "❌ Error: El test ${TEST_BINARY_NAME} requiere un módulo .ko, pero no se encontró en ${REPO_DIR}/src/"
             exit 1
         fi
         MODULE_NAME=$(basename "${MODULE_KO_PATH}" .ko)
@@ -69,7 +69,7 @@ elif [ "${BUILD_TYPE}" = "LTP" ]; then
     fi
 
     # 3. Delegar la generación del manifiesto tras la inspección exitosa
-    generate_ltp_manifest "${RUNNER_TYPE}" "${TEST_NAME}" "${TEST_BIN}" "${MODULE_NAME}" "${MODULE_KO_PATH}"
+    generate_ltp_manifest "${RUNNER_TYPE}" "${TEST_BINARY_NAME}" "${TEST_BINARY_PATH}" "${MODULE_NAME}" "${MODULE_KO_PATH}"
 
 else
     echo "❌ Error: BUILD_TYPE desconocido [${BUILD_TYPE}]."
