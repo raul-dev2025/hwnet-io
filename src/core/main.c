@@ -63,11 +63,9 @@ static int __init hwnet_init_module(void)
   struct hwnet_priv *priv;
   int ret;
 
-  hwnet_dev = alloc_etherdev(sizeof(struct hwnet_priv));
+  hwnet_dev = alloc_netdev(sizeof(struct hwnet_priv), "hwnet_io", NET_NAME_UNKNOWN, hwnet_setup);
   if (!hwnet_dev)
     return -ENOMEM;
-
-  hwnet_setup(hwnet_dev);
 
   priv = netdev_priv(hwnet_dev);
   priv->dev = hwnet_dev;
