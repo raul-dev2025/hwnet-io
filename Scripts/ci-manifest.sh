@@ -50,8 +50,8 @@ generate_ltp_manifest() {
 
     # Variables de build y runner
     local runner_type="${RUNNER_TYPE:-GENERIC}"
-    local test_name="${TEST_NAME:-}"
-    local test_bin="${TEST_BIN:-}"
+    local test_name="${TEST_BINARY_NAME:-}"
+    local test_bin="${TEST_BINARY_PATH:-}"
     local module_name="${MODULE_NAME:-}"
     local module_ko_path="${MODULE_KO_PATH:-}"
     
