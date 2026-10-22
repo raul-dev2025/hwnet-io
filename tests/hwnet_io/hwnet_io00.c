@@ -18,11 +18,17 @@
 #include <net/if.h>        // Estructuras para interfaces de red (ifreq, etc.)
 #include <linux/netlink.h> // Definicioines para futuros sockets Netlink
 
-#include "tst_test.h" // Macroestructuras y API principal del framework de pruebas
+#include "tst_test.h"   // Macroestructuras y API principal del framework de pruebas
+#include "user/error.h" // Esquema de códigos de error personalizado
 
 static void setup(void)
 {
-  return;
+  unsigned int ifindex = if_nametoindex("hwnet_io");
+  if (ifindex == 0)
+  {
+    tst_brk(TBROK, "La interfaz de red 'hwnet_io' no se registro");
+  }
+  tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
 }
 
 static void cleanup(void)
