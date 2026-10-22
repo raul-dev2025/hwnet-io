@@ -10,6 +10,7 @@
 #include <linux/netdevice.h>   // Estructucturas net y funciones de estado de cola
 #include <linux/etherdevice.h> // Utilidades Ethernet como eth_hw_addr_random
 #include <linux/skbuff.h>      // Definición sk_buff y funciones de gestión como dev_kfree_skb
+#include "hwnet_error.h"
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Raul Vilchez");
