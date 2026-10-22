@@ -23,34 +23,21 @@
 
 static void setup(void)
 {
-  return;
+  unsigned int ifindex = if_nametoindex("hwnet_io");
+  if (ifindex == 0)
+  {
+    tst_brk(TBROK, "La interfaz de red 'hwnet_io' no se registro");
+  }
+  tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
 }
 
 static void cleanup(void)
 {
-  return;
-}
-
-static void get_ifnet_index()
-{
-  unsigned int ifindex;
-
-  // Probamos de obtener el indice de la interfaz
-  ifindex = if_nametoindex("hwnet_io");
-
-  if (ifindex == 0)
-  {
-    tst_res(TFAIL, "La interfaz de red 'hwnet_io' no se registro");
-  }
-  else
-  {
-    tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
-  }
+  tst_res(TINFO, "La tarea de Limpieza sucedera aqui.");
 }
 
 static void run_test(void)
 {
-  get_ifnet_index();
 }
 
 static struct tst_test test = {
