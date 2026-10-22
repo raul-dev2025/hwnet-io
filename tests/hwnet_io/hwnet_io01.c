@@ -20,17 +20,17 @@
 
 #include "tst_test.h" // Macroestructuras y API principal del framework de pruebas
 
-// static void setup(void)
-// {
-//   return;
-// }
+static void setup(void)
+{
+  return;
+}
 
-// static void cleanup(void)
-// {
-//   return;
-// }
+static void cleanup(void)
+{
+  return;
+}
 
-static void run_test(void)
+static void get_ifnet_index()
 {
   unsigned int ifindex;
 
@@ -46,8 +46,14 @@ static void run_test(void)
     tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
   }
 }
+
+static void run_test(void)
+{
+  get_ifnet_index();
+}
+
 static struct tst_test test = {
-    // .setup = setup,
-    // .cleanup = cleanup,
+    .setup = setup,
+    .cleanup = cleanup,
     .test_all = run_test,
 };
