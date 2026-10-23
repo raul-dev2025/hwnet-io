@@ -61,6 +61,7 @@ static void cleanup(void)
 
 static void run_test(void)
 {
+  check_hwnet_io_flags();
 }
 
 static struct tst_test test = {
