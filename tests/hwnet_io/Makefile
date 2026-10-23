@@ -24,7 +24,7 @@ all: symlink $(TARGETS)
 
 # regla implicita para compilar individualmente
 symlink:
-	@if [ -f (MODULE_DIR)/hwnet_io.ko ]; then \
+	@if [ -f $(MODULE_DIR)/hwnet_io.ko ]; then \
 		ln -sf $(MODULE_DIR)/hwnet_io.ko .; \
 	fi
 
