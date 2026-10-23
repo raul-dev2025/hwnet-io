@@ -31,6 +31,14 @@ static void setup(void)
   tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
 }
 
+static void check_hwnet_io_flags()
+{
+  int sock;
+  struct ifreq ifr;
+
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
+}
+
 static void cleanup(void)
 {
   tst_res(TINFO, "La tarea de Limpieza sucedera aqui.");
