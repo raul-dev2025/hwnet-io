@@ -37,6 +37,14 @@ static void check_hwnet_io_flags()
   struct ifreq ifr;
 
   sock = socket(AF_INET, SOCK_DGRAM, 0);
+  if (sock < 0)
+  {
+    tst_brk(TBROK | errno, "Fallo al inicializar el socket de control [Codigo base: %d]",
+            HWNET_IO_ERR_SOCKET_INIT);
+  }
+  memset(&ifr, 0, sizeof(ifr));
+  strncpy(ifr.ifr_name, "hwnet_io", IFNAMSIZ - 1);
+
 }
 
 static void cleanup(void)
