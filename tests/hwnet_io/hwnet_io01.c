@@ -45,6 +45,13 @@ static void check_hwnet_io_flags()
   memset(&ifr, 0, sizeof(ifr));
   strncpy(ifr.ifr_name, "hwnet_io", IFNAMSIZ - 1);
 
+  if (ioctl(sock, SIOCGIFFLAGS, &ifr) < 0)
+  {
+    close(sock);
+    tst_brk(TBROK | errno, "Fallo en la operacion ioctl par la interfaz hwnet_io [Codigo base: %d]", HWNET_IO_ERR_IOCTL_FAILED);
+  }
+  close(sock);
+  tst_res(TPASS, "Los flags de la interfaz hwnet_io se validaron correctamente.");
 }
 
 static void cleanup(void)
