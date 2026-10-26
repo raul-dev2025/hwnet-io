@@ -1,0 +1,594 @@
+grep -rn "timer" tests/hwnet_io/ /usr/include/ > /tmp/out.log 2>&1
+==================================================================
+/usr/include/asm/setup_data.h:60:		__u16	pm_timer_address;
+/usr/include/asm/unistd_32.h:108:#define __NR_setitimer 104
+/usr/include/asm/unistd_32.h:109:#define __NR_getitimer 105
+/usr/include/asm/unistd_32.h:260:#define __NR_timer_create 259
+/usr/include/asm/unistd_32.h:261:#define __NR_timer_settime 260
+/usr/include/asm/unistd_32.h:262:#define __NR_timer_gettime 261
+/usr/include/asm/unistd_32.h:263:#define __NR_timer_getoverrun 262
+/usr/include/asm/unistd_32.h:264:#define __NR_timer_delete 263
+/usr/include/asm/unistd_32.h:322:#define __NR_timerfd_create 322
+/usr/include/asm/unistd_32.h:325:#define __NR_timerfd_settime 325
+/usr/include/asm/unistd_32.h:326:#define __NR_timerfd_gettime 326
+/usr/include/asm/unistd_32.h:402:#define __NR_timer_gettime64 408
+/usr/include/asm/unistd_32.h:403:#define __NR_timer_settime64 409
+/usr/include/asm/unistd_32.h:404:#define __NR_timerfd_gettime64 410
+/usr/include/asm/unistd_32.h:405:#define __NR_timerfd_settime64 411
+/usr/include/asm/unistd_64.h:40:#define __NR_getitimer 36
+/usr/include/asm/unistd_64.h:42:#define __NR_setitimer 38
+/usr/include/asm/unistd_64.h:226:#define __NR_timer_create 222
+/usr/include/asm/unistd_64.h:227:#define __NR_timer_settime 223
+/usr/include/asm/unistd_64.h:228:#define __NR_timer_gettime 224
+/usr/include/asm/unistd_64.h:229:#define __NR_timer_getoverrun 225
+/usr/include/asm/unistd_64.h:230:#define __NR_timer_delete 226
+/usr/include/asm/unistd_64.h:287:#define __NR_timerfd_create 283
+/usr/include/asm/unistd_64.h:290:#define __NR_timerfd_settime 286
+/usr/include/asm/unistd_64.h:291:#define __NR_timerfd_gettime 287
+/usr/include/asm/unistd_x32.h:35:#define __NR_getitimer (__X32_SYSCALL_BIT + 36)
+/usr/include/asm/unistd_x32.h:37:#define __NR_setitimer (__X32_SYSCALL_BIT + 38)
+/usr/include/asm/unistd_x32.h:198:#define __NR_timer_settime (__X32_SYSCALL_BIT + 223)
+/usr/include/asm/unistd_x32.h:199:#define __NR_timer_gettime (__X32_SYSCALL_BIT + 224)
+/usr/include/asm/unistd_x32.h:200:#define __NR_timer_getoverrun (__X32_SYSCALL_BIT + 225)
+/usr/include/asm/unistd_x32.h:201:#define __NR_timer_delete (__X32_SYSCALL_BIT + 226)
+/usr/include/asm/unistd_x32.h:250:#define __NR_timerfd_create (__X32_SYSCALL_BIT + 283)
+/usr/include/asm/unistd_x32.h:253:#define __NR_timerfd_settime (__X32_SYSCALL_BIT + 286)
+/usr/include/asm/unistd_x32.h:254:#define __NR_timerfd_gettime (__X32_SYSCALL_BIT + 287)
+/usr/include/asm/unistd_x32.h:346:#define __NR_timer_create (__X32_SYSCALL_BIT + 526)
+/usr/include/asm/kvm.h:486:	__u64 preemption_timer_deadline;
+/usr/include/asm/kvm.h:650:		} timer;
+/usr/include/asm-generic/posix_types.h:93:typedef int		__kernel_timer_t;
+/usr/include/asm-generic/siginfo.h:44:	/* POSIX.1b timers */
+/usr/include/asm-generic/siginfo.h:46:		__kernel_timer_t _tid;	/* timer id */
+/usr/include/asm-generic/siginfo.h:50:	} _timer;
+/usr/include/asm-generic/siginfo.h:146:#define si_tid		_sifields._timer._tid
+/usr/include/asm-generic/siginfo.h:147:#define si_overrun	_sifields._timer._overrun
+/usr/include/asm-generic/siginfo.h:148:#define si_sys_private  _sifields._timer._sys_private
+/usr/include/asm-generic/siginfo.h:177:#define SI_TIMER	-2		/* sent by timer expiration */
+/usr/include/asm-generic/unistd.h:233:#define __NR_timerfd_create 85
+/usr/include/asm-generic/unistd.h:234:__SYSCALL(__NR_timerfd_create, sys_timerfd_create)
+/usr/include/asm-generic/unistd.h:237:#define __NR_timerfd_settime 86
+/usr/include/asm-generic/unistd.h:238:__SC_3264(__NR_timerfd_settime, sys_timerfd_settime32, \
+/usr/include/asm-generic/unistd.h:239:	  sys_timerfd_settime)
+/usr/include/asm-generic/unistd.h:240:#define __NR_timerfd_gettime 87
+/usr/include/asm-generic/unistd.h:241:__SC_3264(__NR_timerfd_gettime, sys_timerfd_gettime32, \
+/usr/include/asm-generic/unistd.h:242:	  sys_timerfd_gettime)
+/usr/include/asm-generic/unistd.h:286:#define __NR_getitimer 102
+/usr/include/asm-generic/unistd.h:287:__SC_COMP(__NR_getitimer, sys_getitimer, compat_sys_getitimer)
+/usr/include/asm-generic/unistd.h:288:#define __NR_setitimer 103
+/usr/include/asm-generic/unistd.h:289:__SC_COMP(__NR_setitimer, sys_setitimer, compat_sys_setitimer)
+/usr/include/asm-generic/unistd.h:296:#define __NR_timer_create 107
+/usr/include/asm-generic/unistd.h:297:__SC_COMP(__NR_timer_create, sys_timer_create, compat_sys_timer_create)
+/usr/include/asm-generic/unistd.h:300:#define __NR_timer_gettime 108
+/usr/include/asm-generic/unistd.h:301:__SC_3264(__NR_timer_gettime, sys_timer_gettime32, sys_timer_gettime)
+/usr/include/asm-generic/unistd.h:304:#define __NR_timer_getoverrun 109
+/usr/include/asm-generic/unistd.h:305:__SYSCALL(__NR_timer_getoverrun, sys_timer_getoverrun)
+/usr/include/asm-generic/unistd.h:308:#define __NR_timer_settime 110
+/usr/include/asm-generic/unistd.h:309:__SC_3264(__NR_timer_settime, sys_timer_settime32, sys_timer_settime)
+/usr/include/asm-generic/unistd.h:312:#define __NR_timer_delete 111
+/usr/include/asm-generic/unistd.h:313:__SYSCALL(__NR_timer_delete, sys_timer_delete)
+/usr/include/asm-generic/unistd.h:725:#define __NR_timer_gettime64 408
+/usr/include/asm-generic/unistd.h:726:__SYSCALL(__NR_timer_gettime64, sys_timer_gettime)
+/usr/include/asm-generic/unistd.h:727:#define __NR_timer_settime64 409
+/usr/include/asm-generic/unistd.h:728:__SYSCALL(__NR_timer_settime64, sys_timer_settime)
+/usr/include/asm-generic/unistd.h:729:#define __NR_timerfd_gettime64 410
+/usr/include/asm-generic/unistd.h:730:__SYSCALL(__NR_timerfd_gettime64, sys_timerfd_gettime)
+/usr/include/asm-generic/unistd.h:731:#define __NR_timerfd_settime64 411
+/usr/include/asm-generic/unistd.h:732:__SYSCALL(__NR_timerfd_settime64, sys_timerfd_settime)
+/usr/include/drm/amdgpu_drm.h:784:/* timestamp for GL_ARB_timer_query */
+/usr/include/drm/i915_drm.h:2855:	 * This optional parameter specifies the timer interval in nanoseconds
+/usr/include/drm/i915_drm.h:2858:	 * the driver if this parameter is not specified. Note that larger timer
+/usr/include/drm/panthor_drm.h:353:	 * @timestamp_frequency: The frequency of the timestamp timer or 0 if
+/usr/include/drm/panthor_drm.h:361:	/** @timestamp_offset: The offset of the timestamp timer. */
+/usr/include/drm/radeon_drm.h:1013:/* timestamp for GL_ARB_timer_query (OpenGL), returns the current GPU clock */
+/usr/include/linux/atm_zatm.h:44:#define ZATM_TIMER_HISTORY_SIZE	16	/* number of timer adjustments to
+/usr/include/linux/ax25.h:91:	unsigned int	t1, t1timer;
+/usr/include/linux/ax25.h:92:	unsigned int	t2, t2timer;
+/usr/include/linux/ax25.h:93:	unsigned int	t3, t3timer;
+/usr/include/linux/ax25.h:94:	unsigned int	idle, idletimer;
+/usr/include/linux/ax25.h:101:	unsigned int	t1, t1timer;
+/usr/include/linux/ax25.h:102:	unsigned int	t2, t2timer;
+/usr/include/linux/ax25.h:103:	unsigned int	t3, t3timer;
+/usr/include/linux/ax25.h:104:	unsigned int	idle, idletimer;
+/usr/include/linux/blktrace_api.h:49:	__BLK_TA_UNPLUG_TIMER,		/* queue was unplugged by timer */
+/usr/include/linux/bpf.h:5198: * long bpf_timer_init(struct bpf_timer *timer, struct bpf_map *map, u64 flags)
+/usr/include/linux/bpf.h:5200: *		Initialize the timer.
+/usr/include/linux/bpf.h:5204: *		The verifier will reject the program if *timer* is not from
+/usr/include/linux/bpf.h:5208: *		**-EBUSY** if *timer* is already initialized.
+/usr/include/linux/bpf.h:5210: *		**-EPERM** if *timer* is in a map that doesn't have any user references.
+/usr/include/linux/bpf.h:5211: *		The user space should either hold a file descriptor to a map with timers
+/usr/include/linux/bpf.h:5213: *		closed all timers in the map will be cancelled and freed.
+/usr/include/linux/bpf.h:5215: * long bpf_timer_set_callback(struct bpf_timer *timer, void *callback_fn)
+/usr/include/linux/bpf.h:5217: *		Configure the timer to call *callback_fn* static function.
+/usr/include/linux/bpf.h:5220: *		**-EINVAL** if *timer* was not initialized with bpf_timer_init() earlier.
+/usr/include/linux/bpf.h:5221: *		**-EPERM** if *timer* is in a map that doesn't have any user references.
+/usr/include/linux/bpf.h:5222: *		The user space should either hold a file descriptor to a map with timers
+/usr/include/linux/bpf.h:5224: *		closed all timers in the map will be cancelled and freed.
+/usr/include/linux/bpf.h:5226: * long bpf_timer_start(struct bpf_timer *timer, u64 nsecs, u64 flags)
+/usr/include/linux/bpf.h:5228: *		Set timer expiration N nanoseconds from the current time. The
+/usr/include/linux/bpf.h:5230: *		and will not repeat unless another bpf_timer_start() is made.
+/usr/include/linux/bpf.h:5232: *		Since struct bpf_timer is a field inside map element the map
+/usr/include/linux/bpf.h:5233: *		owns the timer. The bpf_timer_set_callback() will increment refcnt
+/usr/include/linux/bpf.h:5235: *		When user space reference to a map reaches zero all timers
+/usr/include/linux/bpf.h:5238: *		process doesn't leave any timers running. If map is pinned in
+/usr/include/linux/bpf.h:5241: *		cancel and free the timer in the given map element.
+/usr/include/linux/bpf.h:5242: *		The map can contain timers that invoke callback_fn-s from different
+/usr/include/linux/bpf.h:5243: *		programs. The same callback_fn can serve different timers from
+/usr/include/linux/bpf.h:5245: *		Every bpf_timer_set_callback() can have different callback_fn.
+/usr/include/linux/bpf.h:5250: *			Start the timer in absolute expire value instead of the
+/usr/include/linux/bpf.h:5257: *		**-EINVAL** if *timer* was not initialized with bpf_timer_init() earlier
+/usr/include/linux/bpf.h:5260: * long bpf_timer_cancel(struct bpf_timer *timer)
+/usr/include/linux/bpf.h:5262: *		Cancel the timer and wait for callback_fn to finish if it was running.
+/usr/include/linux/bpf.h:5264: *		0 if the timer was not active.
+/usr/include/linux/bpf.h:5265: *		1 if the timer was active.
+/usr/include/linux/bpf.h:5266: *		**-EINVAL** if *timer* was not initialized with bpf_timer_init() earlier.
+/usr/include/linux/bpf.h:5267: *		**-EDEADLK** if callback_fn tried to call bpf_timer_cancel() on its
+/usr/include/linux/bpf.h:5268: *		own timer which would have led to a deadlock otherwise.
+/usr/include/linux/bpf.h:5979:	FN(timer_init, 169, ##ctx)			\
+/usr/include/linux/bpf.h:5980:	FN(timer_set_callback, 170, ##ctx)		\
+/usr/include/linux/bpf.h:5981:	FN(timer_start, 171, ##ctx)			\
+/usr/include/linux/bpf.h:5982:	FN(timer_cancel, 172, ##ctx)			\
+/usr/include/linux/bpf.h:7356:struct bpf_timer {
+/usr/include/linux/bpf.h:7538: * Flags to control bpf_timer_start() behaviour.
+/usr/include/linux/cec-funcs.h:369:static __inline__ void cec_msg_timer_status(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:370:					__u8 timer_overlap_warning,
+/usr/include/linux/cec-funcs.h:379:	msg->msg[2] = (timer_overlap_warning << 7) |
+/usr/include/linux/cec-funcs.h:392:static __inline__ void cec_ops_timer_status(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:393:					__u8 *timer_overlap_warning,
+/usr/include/linux/cec-funcs.h:400:	*timer_overlap_warning = msg->msg[2] >> 7;
+/usr/include/linux/cec-funcs.h:419:static __inline__ void cec_msg_timer_cleared_status(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:420:						__u8 timer_cleared_status)
+/usr/include/linux/cec-funcs.h:424:	msg->msg[2] = timer_cleared_status;
+/usr/include/linux/cec-funcs.h:427:static __inline__ void cec_ops_timer_cleared_status(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:428:						__u8 *timer_cleared_status)
+/usr/include/linux/cec-funcs.h:430:	*timer_cleared_status = msg->msg[2];
+/usr/include/linux/cec-funcs.h:433:static __inline__ void cec_msg_clear_analogue_timer(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:463:static __inline__ void cec_ops_clear_analogue_timer(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:488:static __inline__ void cec_msg_clear_digital_timer(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:513:static __inline__ void cec_ops_clear_digital_timer(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:534:static __inline__ void cec_msg_clear_ext_timer(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:564:static __inline__ void cec_ops_clear_ext_timer(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:589:static __inline__ void cec_msg_set_analogue_timer(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:619:static __inline__ void cec_ops_set_analogue_timer(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:644:static __inline__ void cec_msg_set_digital_timer(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:669:static __inline__ void cec_ops_set_digital_timer(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:690:static __inline__ void cec_msg_set_ext_timer(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:720:static __inline__ void cec_ops_set_ext_timer(const struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:745:static __inline__ void cec_msg_set_timer_program_title(struct cec_msg *msg,
+/usr/include/linux/cec-funcs.h:757:static __inline__ void cec_ops_set_timer_program_title(const struct cec_msg *msg,
+/usr/include/linux/cec.h:688:/* Timer Cleared Status Data Operand (timer_cleared_status) */
+/usr/include/linux/cec.h:695:/* Timer Overlap Warning Operand (timer_overlap_warning) */
+/usr/include/linux/comedi.h:130:/* timer rounding definitions */
+/usr/include/linux/comedi.h:279: * @INSN_CONFIG_GPCT_SINGLE_PULSE_GENERATOR: Configure counter/timer as
+/usr/include/linux/comedi.h:281: * @INSN_CONFIG_GPCT_PULSE_TRAIN_GENERATOR: Configure counter/timer as
+/usr/include/linux/comedi.h:285: * @INSN_CONFIG_SET_GATE_SRC:	Set counter/timer gate source.
+/usr/include/linux/comedi.h:286: * @INSN_CONFIG_GET_GATE_SRC:	Get counter/timer gate source.
+/usr/include/linux/comedi.h:287: * @INSN_CONFIG_SET_CLOCK_SRC:	Set counter/timer master clock source.
+/usr/include/linux/comedi.h:288: * @INSN_CONFIG_GET_CLOCK_SRC:	Get counter/timer master clock source.
+/usr/include/linux/comedi.h:289: * @INSN_CONFIG_SET_OTHER_SRC:	Set counter/timer "other" source.
+/usr/include/linux/comedi.h:293: * @INSN_CONFIG_SET_COUNTER_MODE: Set counter/timer mode.
+/usr/include/linux/comedi.h:697: * @timer_type:		Timer type.  Always set to %5 ("nanosecond timer").
+/usr/include/linux/comedi.h:788:	unsigned int timer_type;
+/usr/include/linux/comedi.h:1020:/* *** Counter/timer names : 8 counters max *** */
+/usr/include/linux/comedi.h:1478: * timer subdevice on some Amplicon DIO PCIe boards (amplc_dio200 driver).
+/usr/include/linux/can/isotp.h:58:/* sockopts to force stmin timer values for protocol regression tests */
+/usr/include/linux/dqblk_xfs.h:64:	__s32		d_itimer;	/* Zero if within inode limits. If
+/usr/include/linux/dqblk_xfs.h:67:	__s32		d_btimer;	/* similar to above; for disk blocks */
+/usr/include/linux/dqblk_xfs.h:70:	__s8		d_itimer_hi;	/* upper 8 bits of timer values */
+/usr/include/linux/dqblk_xfs.h:71:	__s8		d_btimer_hi;
+/usr/include/linux/dqblk_xfs.h:72:	__s8		d_rtbtimer_hi;
+/usr/include/linux/dqblk_xfs.h:77:	__s32		d_rtbtimer;	/* similar to above; for RT disk blks */
+/usr/include/linux/dqblk_xfs.h:95: * These timers can only be set in super user's dquot. For others, timers are
+/usr/include/linux/dqblk_xfs.h:96: * automatically started and stopped. Superusers timer values set the limits
+/usr/include/linux/dqblk_xfs.h:172:	__s32		qs_btimelimit;  /* limit for blks timer */	
+/usr/include/linux/dqblk_xfs.h:173:	__s32		qs_itimelimit;  /* limit for inodes timer */	
+/usr/include/linux/dqblk_xfs.h:174:	__s32		qs_rtbtimelimit;/* limit for rt blks timer */	
+/usr/include/linux/dqblk_xfs.h:217:	__s32			qs_btimelimit;  /* limit for blks timer */
+/usr/include/linux/dqblk_xfs.h:218:	__s32			qs_itimelimit;  /* limit for inodes timer */
+/usr/include/linux/dqblk_xfs.h:219:	__s32			qs_rtbtimelimit;/* limit for rt blks timer */
+/usr/include/linux/elf.h:416:#define NT_S390_TIMER	0x301		/* s390 timer register */
+/usr/include/linux/ethtool.h:363: * @tx_lpi_timer: Time in microseconds the interface delays prior to asserting
+/usr/include/linux/ethtool.h:376:	__u32	tx_lpi_timer;
+/usr/include/linux/ethtool.h:868: * by the PSE during the ted_timer interval.
+/usr/include/linux/firewire-cdev.h:542:#define FW_CDEV_IOC_GET_CYCLE_TIMER     _IOR('#', 0x0c, struct fw_cdev_get_cycle_timer)
+/usr/include/linux/firewire-cdev.h:554:#define FW_CDEV_IOC_GET_CYCLE_TIMER2   _IOWR('#', 0x14, struct fw_cdev_get_cycle_timer2)
+/usr/include/linux/firewire-cdev.h:577: *  3  (2.6.34)  - made &fw_cdev_get_cycle_timer reliable
+/usr/include/linux/firewire-cdev.h:1023: * struct fw_cdev_get_cycle_timer - read cycle timer register
+/usr/include/linux/firewire-cdev.h:1025: * @cycle_timer:  Cycle Time register contents
+/usr/include/linux/firewire-cdev.h:1031: * monotonic) @cycle_timer values on certain controllers.
+/usr/include/linux/firewire-cdev.h:1033:struct fw_cdev_get_cycle_timer {
+/usr/include/linux/firewire-cdev.h:1035:	__u32 cycle_timer;
+/usr/include/linux/firewire-cdev.h:1039: * struct fw_cdev_get_cycle_timer2 - read cycle timer register
+/usr/include/linux/firewire-cdev.h:1043: * @cycle_timer:  Cycle Time register contents
+/usr/include/linux/firewire-cdev.h:1045: * The %FW_CDEV_IOC_GET_CYCLE_TIMER2 ioctl reads the isochronous cycle timer
+/usr/include/linux/firewire-cdev.h:1053: * @cycle_timer consists of 7 bits cycleSeconds, 13 bits cycleCount, and
+/usr/include/linux/firewire-cdev.h:1057:struct fw_cdev_get_cycle_timer2 {
+/usr/include/linux/firewire-cdev.h:1061:	__u32 cycle_timer;
+/usr/include/linux/gsmmux.h:30: * All timers are in units of 1/100th of a second.
+/usr/include/linux/gsmmux.h:35: * @t1:            Acknowledgment timer
+/usr/include/linux/gsmmux.h:36: * @t2:            Response timer for multiplexer control channel
+/usr/include/linux/gsmmux.h:37: * @t3:            Response timer for wake-up procedure
+/usr/include/linux/gsmmux.h:99: * All timers are in units of 1/100th of a second.
+/usr/include/linux/hpet.h:12:	unsigned short hi_timer;
+/usr/include/linux/hpet.h:24:#define MAX_HPET_TBS	8		/* maximum hpet timer blocks */
+/usr/include/linux/if_bridge.h:71:	__u32 hello_timer_value;
+/usr/include/linux/if_bridge.h:72:	__u32 tcn_timer_value;
+/usr/include/linux/if_bridge.h:73:	__u32 topology_change_timer_value;
+/usr/include/linux/if_bridge.h:74:	__u32 gc_timer_value;
+/usr/include/linux/if_bridge.h:88:	__u32 message_age_timer_value;
+/usr/include/linux/if_bridge.h:89:	__u32 forward_delay_timer_value;
+/usr/include/linux/if_bridge.h:90:	__u32 hold_timer_value;
+/usr/include/linux/if_bridge.h:97:	__u32 ageing_timer_value;
+/usr/include/linux/if_link.h:466: * Please *note* that the timer values in the following section are expected
+/usr/include/linux/if_link.h:556: *   The bridge hello timer, read only.
+/usr/include/linux/if_link.h:559: *   The bridge tcn timer, read only.
+/usr/include/linux/if_link.h:562: *   The bridge topology change timer, read only.
+/usr/include/linux/if_link.h:565: *   The bridge gc timer, read only.
+/usr/include/linux/if_packet.h:219:	 *		time when the timer fired and the block was closed.
+/usr/include/linux/if_packet.h:225:	 *		ts_last_pkt = time when the timer fired and the block
+/usr/include/linux/igmp.h:113:#define IGMP_TIMER_SCALE		10	/* denotes that the igmphdr->timer field */
+/usr/include/linux/inet_diag.h:120:	__u8	idiag_timer;
+/usr/include/linux/nexthop.h:98:	/* clock_t as u32; nexthop bucket idle timer (per-group) */
+/usr/include/linux/nexthop.h:100:	/* clock_t as u32; nexthop unbalanced timer */
+/usr/include/linux/netfilter/xt_IDLETIMER.h:3: * Header file for Xtables timer target module.
+/usr/include/linux/netfilter/xt_IDLETIMER.h:22:struct idletimer_tg_info {
+/usr/include/linux/netfilter/xt_IDLETIMER.h:28:	struct idletimer_tg *timer __attribute__((aligned(8)));
+/usr/include/linux/netfilter/xt_IDLETIMER.h:31:struct idletimer_tg_info_v1 {
+/usr/include/linux/netfilter/xt_IDLETIMER.h:37:	__u8 timer_type;
+/usr/include/linux/netfilter/xt_IDLETIMER.h:40:	struct idletimer_tg *timer __attribute__((aligned(8)));
+/usr/include/linux/nl80211.h:168: * a) Expiration of hardware timer whose expiration time is set to maximum
+/usr/include/linux/pci_regs.h:134:#define PCI_SEC_LATENCY_TIMER	0x1b	/* Latency timer for secondary interface */
+/usr/include/linux/pci_regs.h:177:#define PCI_CB_LATENCY_TIMER	0x1b	/* CardBus latency timer */
+/usr/include/linux/pkt_sched.h:829:	TCA_FQ_TIMER_SLACK,	/* timer slack */
+/usr/include/linux/pr.h:18:	/* The request was failed due to a fast failure timer. */
+/usr/include/linux/prctl.h:85: * Get/set the timerslack as used by poll/select/nanosleep
+/usr/include/linux/scc.h:69:#define TIMER_OFF	65535U	/* to switch off timers */
+/usr/include/linux/sctp.h:880: * 7.1.23.  Get or set delayed ack timer (SCTP_DELAYED_SACK)
+/usr/include/linux/sctp.h:915: *   window, and retransmission timer values.  This information is
+/usr/include/linux/serial_reg.h:311:#define UART_RSA_IER_TIMER (1 << 4) /* Enable timer interrupt */
+/usr/include/linux/soundcard.h:129:#define SNDCTL_SEQ_CTRLRATE		_SIOWR('Q', 3, int)	/* Set/get timer resolution (HZ) */
+/usr/include/linux/soundcard.h:504:struct sound_timer_info {
+/usr/include/linux/sysctl.h:143:	KERN_HZ_TIMER=65,	/* int: hz timer on or off */
+/usr/include/linux/tcp.h:185: * information and timer events.
+/usr/include/linux/time.h:21:struct itimerspec {
+/usr/include/linux/time.h:22:	struct timespec it_interval;/* timer period */
+/usr/include/linux/time.h:23:	struct timespec it_value;	/* timer expiration */
+/usr/include/linux/time.h:26:struct itimerval {
+/usr/include/linux/time.h:27:	struct timeval it_interval;/* timer interval */
+/usr/include/linux/time.h:37: * Names of the interval timers, and structure
+/usr/include/linux/time.h:38: * defining a timer setting:
+/usr/include/linux/time.h:45: * The IDs of the various system clocks (for POSIX.1b interval timers):
+/usr/include/linux/time.h:69: * The various flags for setting POSIX.1b interval timers:
+/usr/include/linux/time_types.h:12:struct __kernel_itimerspec {
+/usr/include/linux/time_types.h:13:	struct __kernel_timespec it_interval;    /* timer period */
+/usr/include/linux/time_types.h:14:	struct __kernel_timespec it_value;       /* timer expiration */
+/usr/include/linux/time_types.h:36:struct __kernel_old_itimerval {
+/usr/include/linux/time_types.h:37:	struct __kernel_old_timeval it_interval;/* timer interval */
+/usr/include/linux/timerfd.h:3: *  include/linux/timerfd.h
+/usr/include/linux/timerfd.h:27: * Also make sure to update the masks in include/linux/timerfd.h
+/usr/include/linux/usb/ch9.h:1258: * idle timer of 256 microseconds, 0x2 means 512 microseconds, 0xFE means
+/usr/include/linux/virtio_ids.h:46:#define VIRTIO_ID_CLOCK			17 /* virtio clock/timer */
+/usr/include/linux/watchdog.h:53:#define	WDIOS_DISABLECARD	0x0001	/* Turn off the watchdog timer */
+/usr/include/linux/watchdog.h:54:#define	WDIOS_ENABLECARD	0x0002	/* Turn on the watchdog timer */
+/usr/include/linux/xfrm.h:273:	XFRM_AE_ETHR=8, /* expiry timer threshold */
+/usr/include/linux/xfrm.h:275:	XFRM_AE_CE=32, /* Event cause is timer expiry */
+/usr/include/rdma/ib_user_verbs.h:576:	__u8	min_rnr_timer;
+/usr/include/rdma/ib_user_verbs.h:711:	__u8  min_rnr_timer;
+/usr/include/rdma/ib_user_verbs.h:742:	__u8  min_rnr_timer;
+/usr/include/sound/asequencer.h:53:/** timer messages
+/usr/include/sound/asequencer.h:238:	/* queue timer control */
+/usr/include/sound/asequencer.h:512:	 *  security settings, only owner of this queue can start/stop timer
+/usr/include/sound/asequencer.h:547:/* sequencer timer sources */
+/usr/include/sound/asequencer.h:548:#define SNDRV_SEQ_TIMER_ALSA		0	/* ALSA timer */
+/usr/include/sound/asequencer.h:552:/* queue timer info */
+/usr/include/sound/asequencer.h:553:struct snd_seq_queue_timer {
+/usr/include/sound/asequencer.h:555:	int type;			/* source timer type */
+/usr/include/sound/asequencer.h:558:			struct snd_timer_id id;	/* ALSA's timer ID */
+/usr/include/sound/asequencer.h:649:#define SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER	_IOWR('S', 0x45, struct snd_seq_queue_timer)
+/usr/include/sound/asequencer.h:650:#define SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER	_IOW ('S', 0x46, struct snd_seq_queue_timer)
+/usr/include/sound/asound.h:863: *  Timer section - /dev/snd/timer
+/usr/include/sound/asound.h:877:/* slave timer classes */
+/usr/include/sound/asound.h:886:/* global timers (device member) */
+/usr/include/sound/asound.h:896:struct snd_timer_id {
+/usr/include/sound/asound.h:904:struct snd_timer_ginfo {
+/usr/include/sound/asound.h:905:	struct snd_timer_id tid;	/* requested timer ID */
+/usr/include/sound/asound.h:906:	unsigned int flags;		/* timer flags - SNDRV_TIMER_FLG_* */
+/usr/include/sound/asound.h:908:	unsigned char id[64];		/* timer identification */
+/usr/include/sound/asound.h:909:	unsigned char name[80];		/* timer name */
+/usr/include/sound/asound.h:914:	unsigned int clients;		/* active timer clients */
+/usr/include/sound/asound.h:918:struct snd_timer_gparams {
+/usr/include/sound/asound.h:919:	struct snd_timer_id tid;	/* requested timer ID */
+/usr/include/sound/asound.h:925:struct snd_timer_gstatus {
+/usr/include/sound/asound.h:926:	struct snd_timer_id tid;	/* requested timer ID */
+/usr/include/sound/asound.h:933:struct snd_timer_select {
+/usr/include/sound/asound.h:934:	struct snd_timer_id id;	/* bind to timer ID */
+/usr/include/sound/asound.h:938:struct snd_timer_info {
+/usr/include/sound/asound.h:939:	unsigned int flags;		/* timer flags - SNDRV_TIMER_FLG_* */
+/usr/include/sound/asound.h:941:	unsigned char id[64];		/* timer identificator */
+/usr/include/sound/asound.h:942:	unsigned char name[80];		/* timer name */
+/usr/include/sound/asound.h:952:struct snd_timer_params {
+/usr/include/sound/asound.h:961:struct snd_timer_status {
+/usr/include/sound/asound.h:971: * This structure describes the userspace-driven timer. Such timers are purely virtual,
+/usr/include/sound/asound.h:974:struct snd_timer_uinfo {
+/usr/include/sound/asound.h:975:	/* To pretend being a normal timer, we need to know the resolution in ns. */
+/usr/include/sound/asound.h:983:#define SNDRV_TIMER_IOCTL_NEXT_DEVICE	_IOWR('T', 0x01, struct snd_timer_id)
+/usr/include/sound/asound.h:985:#define SNDRV_TIMER_IOCTL_GINFO		_IOWR('T', 0x03, struct snd_timer_ginfo)
+/usr/include/sound/asound.h:986:#define SNDRV_TIMER_IOCTL_GPARAMS	_IOW('T', 0x04, struct snd_timer_gparams)
+/usr/include/sound/asound.h:987:#define SNDRV_TIMER_IOCTL_GSTATUS	_IOWR('T', 0x05, struct snd_timer_gstatus)
+/usr/include/sound/asound.h:988:#define SNDRV_TIMER_IOCTL_SELECT	_IOW('T', 0x10, struct snd_timer_select)
+/usr/include/sound/asound.h:989:#define SNDRV_TIMER_IOCTL_INFO		_IOR('T', 0x11, struct snd_timer_info)
+/usr/include/sound/asound.h:990:#define SNDRV_TIMER_IOCTL_PARAMS	_IOW('T', 0x12, struct snd_timer_params)
+/usr/include/sound/asound.h:991:#define SNDRV_TIMER_IOCTL_STATUS	_IOR('T', 0x14, struct snd_timer_status)
+/usr/include/sound/asound.h:998:#define SNDRV_TIMER_IOCTL_CREATE	_IOWR('T', 0xa5, struct snd_timer_uinfo)
+/usr/include/sound/asound.h:1009:struct snd_timer_read {
+/usr/include/sound/asound.h:1024:	/* master timer events for slave timer instances */
+/usr/include/sound/asound.h:1033:struct snd_timer_tread {
+/usr/include/sound/asound.h:1077:#define	SNDRV_CTL_ELEM_IFACE_TIMER	((snd_ctl_elem_iface_t) 5) /* timer device */
+/usr/include/unistd.h:129:   _POSIX_TIMERS		POSIX.4 clocks and timers are supported.
+/usr/include/unistd.h:470:   timer is reset to go off every INTERVAL microseconds thereafter.
+/usr/include/c++/14/experimental/io_context:246:      friend class basic_waitable_timer;
+/usr/include/c++/14/experimental/io_context:269:    struct __timer_queue_base : execution_context::service
+/usr/include/c++/14/experimental/io_context:271:      // return milliseconds until next timer expires, or milliseconds::max()
+/usr/include/c++/14/experimental/io_context:277:      __timer_queue_base(execution_context& __ctx) : service(__ctx)
+/usr/include/c++/14/experimental/io_context:281:	__ioc._M_timers.push_back(this);
+/usr/include/c++/14/experimental/io_context:288:      struct __timer_queue : __timer_queue_base
+/usr/include/c++/14/experimental/io_context:290:	using key_type = __timer_queue;
+/usr/include/c++/14/experimental/io_context:293:	__timer_queue(execution_context& __ctx) : __timer_queue_base(__ctx)
+/usr/include/c++/14/experimental/io_context:308:	  // no need to notify reactor unless this timer went to the front?
+/usr/include/c++/14/experimental/io_context:358:	      return chrono::milliseconds::max();  // no pending timers
+/usr/include/c++/14/experimental/io_context:400:	using __timer_id_type = uint64_t;
+/usr/include/c++/14/experimental/io_context:402:	struct __pending_timer
+/usr/include/c++/14/experimental/io_context:404:	  __pending_timer(const _Timer& __t, uint64_t __id,
+/usr/include/c++/14/experimental/io_context:412:	  __timer_id_type _M_id;
+/usr/include/c++/14/experimental/io_context:418:	  operator<(const __pending_timer& __rhs) const
+/usr/include/c++/14/experimental/io_context:422:	struct __queue : priority_queue<__pending_timer>
+/usr/include/c++/14/experimental/io_context:425:	    typename priority_queue<__pending_timer>::container_type::iterator;
+/usr/include/c++/14/experimental/io_context:438:	__timer_id_type _M_next_id = 0;
+/usr/include/c++/14/experimental/io_context:443:      async_wait(const _Timer& __timer, _CompletionHandler&& __h)
+/usr/include/c++/14/experimental/io_context:445:	auto& __queue = use_service<__timer_queue<_Timer>>(*this);
+/usr/include/c++/14/experimental/io_context:446:	__queue.push(__timer, std::move(__h));
+/usr/include/c++/14/experimental/io_context:450:    // Cancel all wait operations initiated by __timer.
+/usr/include/c++/14/experimental/io_context:453:      cancel(const _Timer& __timer)
+/usr/include/c++/14/experimental/io_context:455:	if (!has_service<__timer_queue<_Timer>>(*this))
+/usr/include/c++/14/experimental/io_context:458:	auto __c = use_service<__timer_queue<_Timer>>(*this).cancel(__timer);
+/usr/include/c++/14/experimental/io_context:464:    // Cancel the oldest wait operation initiated by __timer.
+/usr/include/c++/14/experimental/io_context:467:      cancel_one(const _Timer& __timer)
+/usr/include/c++/14/experimental/io_context:469:	if (!has_service<__timer_queue<_Timer>>(*this))
+/usr/include/c++/14/experimental/io_context:472:	if (use_service<__timer_queue<_Timer>>(*this).cancel_one(__timer))
+/usr/include/c++/14/experimental/io_context:615:      __timer_queue_base* __timerq = nullptr;
+/usr/include/c++/14/experimental/io_context:620:	  if (__timerq)
+/usr/include/c++/14/experimental/io_context:622:	      if (__timerq->run_one())
+/usr/include/c++/14/experimental/io_context:625:		__timerq = nullptr;
+/usr/include/c++/14/experimental/io_context:643:	    // find first timer with something to do
+/usr/include/c++/14/experimental/io_context:644:	    for (auto __q : _M_timers)
+/usr/include/c++/14/experimental/io_context:649:		    __timerq = __q;
+/usr/include/c++/14/experimental/io_context:654:		    && (__next < __ms || __timerq == nullptr))
+/usr/include/c++/14/experimental/io_context:656:		    __timerq = __q;
+/usr/include/c++/14/experimental/io_context:661:	    if (__timerq && __ms == __ms.zero())
+/usr/include/c++/14/experimental/io_context:662:	      continue;  // restart loop to run a timer immediately
+/usr/include/c++/14/experimental/io_context:675:		if (__timerq == nullptr)
+/usr/include/c++/14/experimental/io_context:693:	      if (__timerq == nullptr)
+/usr/include/c++/14/experimental/io_context:696:		continue;  // timed out, so restart loop and process the timer
+/usr/include/c++/14/experimental/io_context:699:	  __timerq = nullptr;
+/usr/include/c++/14/experimental/io_context:874:    vector<__timer_queue_base*>			_M_timers;
+/usr/include/c++/14/experimental/net:41:#include <experimental/timer>
+/usr/include/c++/14/experimental/netfwd:75:    class basic_waitable_timer;
+/usr/include/c++/14/experimental/netfwd:76:  typedef basic_waitable_timer<chrono::system_clock> system_timer;
+/usr/include/c++/14/experimental/netfwd:77:  typedef basic_waitable_timer<chrono::steady_clock> steady_timer;
+/usr/include/c++/14/experimental/netfwd:78:  typedef basic_waitable_timer<chrono::high_resolution_clock>
+/usr/include/c++/14/experimental/netfwd:79:    high_resolution_timer;
+/usr/include/c++/14/experimental/timer:1:// <experimental/timer> -*- C++ -*-
+/usr/include/c++/14/experimental/timer:25:/** @file experimental/timer
+/usr/include/c++/14/experimental/timer:81:    class basic_waitable_timer
+/usr/include/c++/14/experimental/timer:95:      basic_waitable_timer(io_context& __ctx)
+/usr/include/c++/14/experimental/timer:99:      basic_waitable_timer(io_context& __ctx, const time_point& __t)
+/usr/include/c++/14/experimental/timer:103:      basic_waitable_timer(io_context& __ctx, const duration& __d)
+/usr/include/c++/14/experimental/timer:107:      basic_waitable_timer(const basic_waitable_timer&) = delete;
+/usr/include/c++/14/experimental/timer:109:      basic_waitable_timer(basic_waitable_timer&& __rhs)
+/usr/include/c++/14/experimental/timer:116:      ~basic_waitable_timer() { cancel(); }
+/usr/include/c++/14/experimental/timer:118:      basic_waitable_timer& operator=(const basic_waitable_timer&) = delete;
+/usr/include/c++/14/experimental/timer:120:      basic_waitable_timer&
+/usr/include/c++/14/experimental/timer:121:      operator=(basic_waitable_timer&& __rhs)
+/usr/include/c++/14/experimental/timer:133:      // basic_waitable_timer operations:
+/usr/include/c++/14/experimental/timer:175:  using system_timer = basic_waitable_timer<chrono::system_clock>;
+/usr/include/c++/14/experimental/timer:176:  using steady_timer = basic_waitable_timer<chrono::steady_clock>;
+/usr/include/c++/14/experimental/timer:177:  using high_resolution_timer
+/usr/include/c++/14/experimental/timer:178:    = basic_waitable_timer<chrono::high_resolution_clock>;
+/usr/include/c++/14/experimental/timer:182:    basic_waitable_timer<_Clock, _WaitTraits>::wait()
+/usr/include/c++/14/experimental/timer:192:    basic_waitable_timer<_Clock, _WaitTraits>::wait(error_code&)
+/usr/include/sys/quota.h:78: * in an allocation failure). The timer is started when the user crosses
+/usr/include/sys/select.h:35:/* Get definition of timer specification structures.  */
+/usr/include/sys/time.h:113:/* Values for the first argument to `getitimer' and `setitimer'.  */
+/usr/include/sys/time.h:114:enum __itimer_which
+/usr/include/sys/time.h:128:/* Type of the second argument to `getitimer' and
+/usr/include/sys/time.h:129:   the second and third arguments `setitimer'.  */
+/usr/include/sys/time.h:130:struct itimerval
+/usr/include/sys/time.h:132:    /* Value to put into `it_value' when the timer expires.  */
+/usr/include/sys/time.h:134:    /* Time to the next timer expiration.  */
+/usr/include/sys/time.h:141:typedef enum __itimer_which __itimer_which_t;
+/usr/include/sys/time.h:143:typedef int __itimer_which_t;
+/usr/include/sys/time.h:147:/* Set *VALUE to the current setting of timer WHICH.
+/usr/include/sys/time.h:149:extern int getitimer (__itimer_which_t __which,
+/usr/include/sys/time.h:150:		      struct itimerval *__value) __THROW;
+/usr/include/sys/time.h:152:/* Set the timer WHICH to *NEW.  If OLD is not NULL,
+/usr/include/sys/time.h:153:   set *OLD to the old value of timer WHICH.
+/usr/include/sys/time.h:155:extern int setitimer (__itimer_which_t __which,
+/usr/include/sys/time.h:156:		      const struct itimerval *__restrict __new,
+/usr/include/sys/time.h:157:		      struct itimerval *__restrict __old) __THROW;
+/usr/include/sys/time.h:167:extern int __REDIRECT_NTH (getitimer, (__itimer_which_t __which,
+/usr/include/sys/time.h:168:                                       struct itimerval *__value),
+/usr/include/sys/time.h:169:                           __getitimer64);
+/usr/include/sys/time.h:171:extern int __REDIRECT_NTH (setitimer, (__itimer_which_t __which,
+/usr/include/sys/time.h:172:                                       const struct itimerval *__restrict __new,
+/usr/include/sys/time.h:173:                                       struct itimerval *__restrict __old),
+/usr/include/sys/time.h:174:                           __setitimer64);
+/usr/include/sys/time.h:180:#  define getitimer __getitimer64
+/usr/include/sys/time.h:181:#  define setitimer __setitimer64
+/usr/include/sys/time.h:230:   NOTE: `timercmp' does not work for >= or <=.  */
+/usr/include/sys/time.h:231:# define timerisset(tvp)	((tvp)->tv_sec || (tvp)->tv_usec)
+/usr/include/sys/time.h:232:# define timerclear(tvp)	((tvp)->tv_sec = (tvp)->tv_usec = 0)
+/usr/include/sys/time.h:233:# define timercmp(a, b, CMP) 						      \
+/usr/include/sys/time.h:237:# define timeradd(a, b, result)						      \
+/usr/include/sys/time.h:247:# define timersub(a, b, result)						      \
+/usr/include/sys/timerfd.h:22:#include <bits/types/struct_itimerspec.h>
+/usr/include/sys/timerfd.h:25:#include <bits/timerfd.h>
+/usr/include/sys/timerfd.h:28:/* Bits to be set in the FLAGS parameter of `timerfd_settime'.  */
+/usr/include/sys/timerfd.h:40:/* Return file descriptor for new interval timer source.  */
+/usr/include/sys/timerfd.h:41:extern int timerfd_create (__clockid_t __clock_id, int __flags) __THROW;
+/usr/include/sys/timerfd.h:43:/* Set next expiration time of interval timer source UFD to UTMR.  If
+/usr/include/sys/timerfd.h:46:extern int timerfd_settime (int __ufd, int __flags,
+/usr/include/sys/timerfd.h:47:			    const struct itimerspec *__utmr,
+/usr/include/sys/timerfd.h:48:			    struct itimerspec *__otmr) __THROW;
+/usr/include/sys/timerfd.h:52:extern int __REDIRECT_NTH (timerfd_settime,
+/usr/include/sys/timerfd.h:54:                            const struct itimerspec *__restrict __value,
+/usr/include/sys/timerfd.h:55:                            struct itimerspec *__restrict __ovalue),
+/usr/include/sys/timerfd.h:56:                           __timerfd_settime64);
+/usr/include/sys/timerfd.h:58:# define timerfd_settime __timerfd_settime64
+/usr/include/sys/timerfd.h:63:extern int timerfd_gettime (int __ufd, struct itimerspec *__otmr) __THROW;
+/usr/include/sys/timerfd.h:67:extern int __REDIRECT_NTH (timerfd_gettime, (int __ufd,
+/usr/include/sys/timerfd.h:68:                                             struct itimerspec *__otmr),
+/usr/include/sys/timerfd.h:69:                           __timerfd_gettime64);
+/usr/include/sys/timerfd.h:71:# define timerfd_gettime __timerfd_gettime64
+/usr/include/sys/timerfd.h:77:#endif /* sys/timerfd.h */
+/usr/include/sys/types.h:130:#include <bits/types/timer_t.h>
+/usr/include/netinet/icmp6.h:128:    uint32_t   nd_ra_retransmit;  /* retransmit timer */
+/usr/include/netax25/ax25.h:115:    unsigned int t1, t1timer;
+/usr/include/netax25/ax25.h:116:    unsigned int t2, t2timer;
+/usr/include/netax25/ax25.h:117:    unsigned int t3, t3timer;
+/usr/include/netax25/ax25.h:118:    unsigned int idle, idletimer;
+/usr/include/netax25/ax25.h:159:#define AX25_VALUES_IDLE	13	/* mode vc idle timer */
+/usr/include/bits/local_lim.h:83:/* Maximum number of timer expiration overruns.  */
+/usr/include/bits/posix1_lim.h:47:/* Minimal number of timer expiration overruns.  */
+/usr/include/bits/posix1_lim.h:131:/* Number of timer for a process.  */
+/usr/include/bits/posix_opt.h:151:/* We have POSIX timers.  */
+/usr/include/bits/syscall.h:606:#ifdef __NR_getitimer
+/usr/include/bits/syscall.h:607:# define SYS_getitimer __NR_getitimer
+/usr/include/bits/syscall.h:1290:#ifdef __NR_osf_getitimer
+/usr/include/bits/syscall.h:1291:# define SYS_osf_getitimer __NR_osf_getitimer
+/usr/include/bits/syscall.h:1518:#ifdef __NR_osf_setitimer
+/usr/include/bits/syscall.h:1519:# define SYS_osf_setitimer __NR_osf_setitimer
+/usr/include/bits/syscall.h:2138:#ifdef __NR_setitimer
+/usr/include/bits/syscall.h:2139:# define SYS_setitimer __NR_setitimer
+/usr/include/bits/syscall.h:2434:#ifdef __NR_timer_create
+/usr/include/bits/syscall.h:2435:# define SYS_timer_create __NR_timer_create
+/usr/include/bits/syscall.h:2438:#ifdef __NR_timer_delete
+/usr/include/bits/syscall.h:2439:# define SYS_timer_delete __NR_timer_delete
+/usr/include/bits/syscall.h:2442:#ifdef __NR_timer_getoverrun
+/usr/include/bits/syscall.h:2443:# define SYS_timer_getoverrun __NR_timer_getoverrun
+/usr/include/bits/syscall.h:2446:#ifdef __NR_timer_gettime
+/usr/include/bits/syscall.h:2447:# define SYS_timer_gettime __NR_timer_gettime
+/usr/include/bits/syscall.h:2450:#ifdef __NR_timer_gettime64
+/usr/include/bits/syscall.h:2451:# define SYS_timer_gettime64 __NR_timer_gettime64
+/usr/include/bits/syscall.h:2454:#ifdef __NR_timer_settime
+/usr/include/bits/syscall.h:2455:# define SYS_timer_settime __NR_timer_settime
+/usr/include/bits/syscall.h:2458:#ifdef __NR_timer_settime64
+/usr/include/bits/syscall.h:2459:# define SYS_timer_settime64 __NR_timer_settime64
+/usr/include/bits/syscall.h:2462:#ifdef __NR_timerfd
+/usr/include/bits/syscall.h:2463:# define SYS_timerfd __NR_timerfd
+/usr/include/bits/syscall.h:2466:#ifdef __NR_timerfd_create
+/usr/include/bits/syscall.h:2467:# define SYS_timerfd_create __NR_timerfd_create
+/usr/include/bits/syscall.h:2470:#ifdef __NR_timerfd_gettime
+/usr/include/bits/syscall.h:2471:# define SYS_timerfd_gettime __NR_timerfd_gettime
+/usr/include/bits/syscall.h:2474:#ifdef __NR_timerfd_gettime64
+/usr/include/bits/syscall.h:2475:# define SYS_timerfd_gettime64 __NR_timerfd_gettime64
+/usr/include/bits/syscall.h:2478:#ifdef __NR_timerfd_settime
+/usr/include/bits/syscall.h:2479:# define SYS_timerfd_settime __NR_timerfd_settime
+/usr/include/bits/syscall.h:2482:#ifdef __NR_timerfd_settime64
+/usr/include/bits/syscall.h:2483:# define SYS_timerfd_settime64 __NR_timerfd_settime64
+/usr/include/bits/siginfo-consts.h:45:  SI_TIMER,			/* Sent by timer expiration.  */
+/usr/include/bits/signum-arch.h:47:#define SIGVTALRM	26	/* Virtual timer expired.  */
+/usr/include/bits/signum-arch.h:48:#define SIGPROF		27	/* Profiling timer expired.  */
+/usr/include/bits/types/timer_t.h:1:#ifndef __timer_t_defined
+/usr/include/bits/types/timer_t.h:2:#define __timer_t_defined 1
+/usr/include/bits/types/timer_t.h:6:/* Timer ID returned by `timer_create'.  */
+/usr/include/bits/types/timer_t.h:7:typedef __timer_t timer_t;
+/usr/include/bits/types/clockid_t.h:6:/* Clock ID used in clock and timer functions.  */
+/usr/include/bits/types/siginfo_t.h:62:	/* POSIX.1b timers.  */
+/usr/include/bits/types/siginfo_t.h:68:	  } _timer;
+/usr/include/bits/types/siginfo_t.h:130:#define si_timerid	_sifields._timer.si_tid
+/usr/include/bits/types/siginfo_t.h:131:#define si_overrun	_sifields._timer.si_overrun
+/usr/include/bits/types/struct_itimerspec.h:1:#ifndef __itimerspec_defined
+/usr/include/bits/types/struct_itimerspec.h:2:#define __itimerspec_defined 1
+/usr/include/bits/types/struct_itimerspec.h:7:/* POSIX.1b structure for timer start values and intervals.  */
+/usr/include/bits/types/struct_itimerspec.h:8:struct itimerspec
+/usr/include/bits/time.h:49:/* High-resolution timer from the CPU.  */
+/usr/include/bits/timerfd.h:19:# error "Never use <bits/timerfd.h> directly; include <sys/timerfd.h> instead."
+/usr/include/bits/timerfd.h:22:/* Bits to be set in the FLAGS parameter of `timerfd_create'.  */
+/usr/include/bits/types.h:168:/* Clock ID used in clock and timer functions.  */
+/usr/include/bits/types.h:171:/* Timer ID returned by `timer_create'.  */
+/usr/include/bits/types.h:172:__STD_TYPE __TIMER_T_TYPE __timer_t;
+/usr/include/bits/typesizes.h:92:/* And for getitimer, setitimer and rusage  */
+/usr/include/elf.h:801:#define NT_S390_TIMER	0x301		/* s390 timer register */
+/usr/include/time.h:47:# include <bits/types/timer_t.h>
+/usr/include/time.h:48:# include <bits/types/struct_itimerspec.h>
+/usr/include/time.h:76:extern time_t time (time_t *__timer) __THROW;
+/usr/include/time.h:86:extern time_t __REDIRECT_NTH (time, (time_t *__timer), __time64);
+/usr/include/time.h:133:extern struct tm *gmtime (const time_t *__timer) __THROW;
+/usr/include/time.h:137:extern struct tm *localtime (const time_t *__timer) __THROW;
+/usr/include/time.h:141:extern struct tm*__REDIRECT_NTH (gmtime, (const time_t *__timer), __gmtime64);
+/usr/include/time.h:142:extern struct tm *__REDIRECT_NTH (localtime, (const time_t *__timer),
+/usr/include/time.h:155:extern struct tm *gmtime_r (const time_t *__restrict __timer,
+/usr/include/time.h:160:extern struct tm *localtime_r (const time_t *__restrict __timer,
+/usr/include/time.h:164:extern struct tm*__REDIRECT_NTH (gmtime_r, (const time_t *__restrict __timer,
+/usr/include/time.h:182:/* Equivalent to `asctime (localtime (timer))'.  */
+/usr/include/time.h:184:extern char *ctime (const time_t *__timer) __THROW;
+/usr/include/time.h:187:extern char *__REDIRECT_NTH (ctime, (const time_t *__timer), __ctime64);
+/usr/include/time.h:201:/* Equivalent to `asctime_r (localtime_r (timer, *TMP*), buf)'.  */
+/usr/include/time.h:203:extern char *ctime_r (const time_t *__restrict __timer,
+/usr/include/time.h:207:extern char *__REDIRECT_NTH (ctime_r, (const time_t *__restrict __timer,
+/usr/include/time.h:343:/* Create new per-process timer using CLOCK_ID.  */
+/usr/include/time.h:344:extern int timer_create (clockid_t __clock_id,
+/usr/include/time.h:346:			 timer_t *__restrict __timerid) __THROW;
+/usr/include/time.h:348:/* Delete timer TIMERID.  */
+/usr/include/time.h:349:extern int timer_delete (timer_t __timerid) __THROW;
+/usr/include/time.h:351:/* Set timer TIMERID to VALUE, returning old value in OVALUE.  */
+/usr/include/time.h:353:extern int timer_settime (timer_t __timerid, int __flags,
+/usr/include/time.h:354:			  const struct itimerspec *__restrict __value,
+/usr/include/time.h:355:			  struct itimerspec *__restrict __ovalue) __THROW;
+/usr/include/time.h:357:/* Get current value of timer TIMERID and store it in VALUE.  */
+/usr/include/time.h:358:extern int timer_gettime (timer_t __timerid, struct itimerspec *__value)
+/usr/include/time.h:362:extern int __REDIRECT_NTH (timer_settime, (timer_t __timerid, int __flags,
+/usr/include/time.h:363:     const struct itimerspec *__restrict __value,
+/usr/include/time.h:364:     struct itimerspec *__restrict __ovalue),
+/usr/include/time.h:365:                          __timer_settime64);
+/usr/include/time.h:367:extern int __REDIRECT_NTH (timer_gettime, (timer_t __timerid,
+/usr/include/time.h:368:                                           struct itimerspec *__value),
+/usr/include/time.h:369:                           __timer_gettime64);
+/usr/include/time.h:371:#   define timer_settime __timer_settime64
+/usr/include/time.h:372:#   define timer_gettime __timer_gettime64
+/usr/include/time.h:376:/* Get expiration overrun for timer TIMERID.  */
+/usr/include/time.h:377:extern int timer_getoverrun (timer_t __timerid) __THROW;
+/usr/include/protocols/routed.h:83: * may be sent.  When these are sent, a timer is set for a random value
+/usr/include/protocols/routed.h:85: * are sent until the timer expires.
+/usr/include/protocols/routed.h:87: * Every update of a routing entry forces an entry's timer to be reset.
+/usr/include/python3.12/pyconfig-64.h:513:/* Define to 1 if you have the `getitimer' function. */
+/usr/include/python3.12/pyconfig-64.h:1070:/* Define to 1 if you have the `setitimer' function. */
+/usr/include/openssl/crypto.h:451:struct tm *OPENSSL_gmtime(const time_t *timer, struct tm *result);
+/usr/include/openssl/ssl.h:2874:typedef unsigned int (*DTLS_timer_cb)(SSL *s, unsigned int timer_us);
+/usr/include/openssl/ssl.h:2876:void DTLS_set_timer_cb(SSL *s, DTLS_timer_cb cb);
+==================================================================
+=== grep -rn "tst_timer" ~/Repos/LTP/include/ >> /tmp/out.log 2>&1
+==================================================================
+/home/raul-ipa/Repos/LTP/include/lapi/msgbuf.h:12:#include "tst_timer.h"
+/home/raul-ipa/Repos/LTP/include/lapi/sembuf.h:12:#include "tst_timer.h"
+/home/raul-ipa/Repos/LTP/include/lapi/shmbuf.h:12:#include "tst_timer.h"
+/home/raul-ipa/Repos/LTP/include/lapi/epoll.h:11:#include "tst_timer.h"
+/home/raul-ipa/Repos/LTP/include/time64_variants.h:20:#include "tst_timer.h"
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1034:void tst_timer_check(clockid_t clk_id);
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1041:void tst_timer_start(clockid_t clk_id);
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1044: * Returns true if timer started by tst_timer_start() has been running for
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1049:int tst_timer_expired_ms(long long ms);
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1054:void tst_timer_stop(void);
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1059:struct timespec tst_timer_elapsed(void);
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1064:static inline long long tst_timer_elapsed_ms(void)
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1066:	return tst_timespec_to_ms(tst_timer_elapsed());
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1072:static inline long long tst_timer_elapsed_us(void)
+/home/raul-ipa/Repos/LTP/include/tst_timer.h:1074:	return tst_timespec_to_us(tst_timer_elapsed());
+/home/raul-ipa/Repos/LTP/include/tst_timer_test.h:17:	tst_timer_start(clk_id);
+/home/raul-ipa/Repos/LTP/include/tst_timer_test.h:19:	tst_timer_stop();
+/home/raul-ipa/Repos/LTP/include/tst_timer_test.h:20:	tst_timer_sample();
+/home/raul-ipa/Repos/LTP/include/tst_timer_test.h:38:#include "tst_timer.h"
+/home/raul-ipa/Repos/LTP/include/tst_timer_test.h:40:void tst_timer_sample(void);
+/home/raul-ipa/Repos/LTP/include/tst_timer_test.h:43:struct tst_test *tst_timer_test_setup(struct tst_test *test);
+/home/raul-ipa/Repos/LTP/include/tst_fuzzy_sync.h:66:#include "tst_timer.h"
+/home/raul-ipa/Repos/LTP/include/tse_sigwait.h:11:#include "tst_timer.h"
