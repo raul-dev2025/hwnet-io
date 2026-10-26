@@ -13,7 +13,7 @@ CFLAGS += -Wall -I../../include -I$(LTP_SRC)/include
 LDFLAGS += -L$(LTP_SRC)/lib
 LDLIBS += -lltp
 
-# Detecta todas las fuentes y  permite invocar objetos individuales
+# Detecta todas las fuentes y permite invocar objetos individuales
 SRCS := $(wildcard hwnet_io*.c)
 TARGETS := $(SRCS:.c=)
 
