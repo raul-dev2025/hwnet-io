@@ -54,10 +54,10 @@ static void check_hwnet_io_flags()
   tst_res(TPASS, "Los flags de la interfaz hwnet_io se validaron correctamente.");
 }
 
-static void cleanup(void)
-{
-  tst_res(TINFO, "La tarea de Limpieza sucedera aqui.");
-}
+// static void cleanup(void)
+// {
+// tst_res(TINFO, "La tarea de Limpieza sucedera aqui.");
+// }
 
 static void run_test(void)
 {
@@ -66,6 +66,6 @@ static void run_test(void)
 
 static struct tst_test test = {
     .setup = setup,
-    .cleanup = cleanup,
+    // .cleanup = cleanup,
     .test_all = run_test,
 };
