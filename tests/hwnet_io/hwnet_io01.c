@@ -67,5 +67,5 @@ static void run_test(void)
 static struct tst_test test = {
     .setup = setup,
     .cleanup = cleanup,
-    .test = run_test,
+    .test_all = run_test,
 };
