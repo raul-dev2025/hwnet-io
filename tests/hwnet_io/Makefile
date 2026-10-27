@@ -28,8 +28,10 @@ symlink:
 		ln -sf $(MODULE_DIR)/hwnet_io.ko .; \
 	fi
 
+
 %: %.c	
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $< $(LDLIBS) -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $*.o
+	$(CC) $*.o $(LDFLAGS) $(LDLIBS) -o $@
 
 
 
