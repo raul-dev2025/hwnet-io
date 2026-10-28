@@ -64,6 +64,8 @@ static void run_test(void)
   check_hwnet_io_flags();
 }
 
+void tst_timer_test_setup(void) {}
+
 static struct tst_test test = {
     .setup = setup,
     .cleanup = cleanup,
