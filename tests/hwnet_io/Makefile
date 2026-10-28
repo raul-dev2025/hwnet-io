@@ -12,7 +12,6 @@ CPPFLAGS += -DMODULE_DIR='"$(MODULE_DIR)"'
 CFLAGS += -Wall -I../../include -I$(LTP_SRC)/include
 LDFLAGS += -L$(LTP_SRC)/lib
 LDLIBS += -lltp
-LTP_FIX_LDFLAGS += -Wl,--defsym,tst_timer_test_setup=0
 
 # Detecta todas las fuentes y permite invocar objetos individuales
 SRCS := $(wildcard hwnet_io*.c)
