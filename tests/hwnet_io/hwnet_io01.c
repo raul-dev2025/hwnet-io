@@ -39,7 +39,7 @@ static void check_hwnet_io_flags()
   sock = socket(AF_INET, SOCK_DGRAM, 0);
   if (sock < 0)
   {
-    tst_brk(TBROK | errno, "Fallo al inicializar el socket de control [Codigo base: %d]",
+    tst_brk(TBROK | TERRNO, "Fallo al inicializar el socket de control [Codigo base: %d]",
             HWNET_IO_ERR_SOCKET_INIT);
   }
   memset(&ifr, 0, sizeof(ifr));
@@ -48,7 +48,7 @@ static void check_hwnet_io_flags()
   if (ioctl(sock, SIOCGIFFLAGS, &ifr) < 0)
   {
     close(sock);
-    tst_brk(TBROK | errno, "Fallo en la operacion ioctl par la interfaz hwnet_io [Codigo base: %d]", HWNET_IO_ERR_IOCTL_FAILED);
+    tst_brk(TBROK | TERRNO, "Fallo en la operacion ioctl par la interfaz hwnet_io [Codigo base: %d]", HWNET_IO_ERR_IOCTL_FAILED);
   }
   close(sock);
   tst_res(TPASS, "Los flags de la interfaz hwnet_io se validaron correctamente.");
