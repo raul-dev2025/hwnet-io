@@ -6,21 +6,21 @@
  */
 #include <tst_test.h>
 
-void setup(void)
+static void setup(void)
 {
   // your setup code goes here
 
   tst_res(TINFO, "example setup");
 }
 
-void cleanup(void)
+static void cleanup(void)
 {
   // your cleanup code goes here
 
   tst_res(TINFO, "example cleanup");
 }
 
-void run(void)
+static void run(void)
 {
   // your test code goes here
 
