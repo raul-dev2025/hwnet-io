@@ -18,7 +18,7 @@
 #include <net/if.h>        // Estructuras para interfaces de red (ifreq, etc.)
 #include <linux/netlink.h> // Definicioines para futuros sockets Netlink
 
-#include "tst_test.h" // Macroestructuras y API principal del framework de pruebas
+#include <tst_test.h> // Macroestructuras y API principal del framework de pruebas
 
 static void setup(void)
 {
