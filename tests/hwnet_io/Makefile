@@ -3,9 +3,9 @@
 #
 # Makefile - Pruebas del controlador hwnet-io bajo LTP
 #
+
 LTP_SRC ?= /home/builder/Repos/ltp
 
-# Regla para hacer visible el modulo si lo requiere el test
 MODULE_DIR ?= /mnt/build-output/Repos/hwnet-io.git/src/core
 CPPFLAGS += -DMODULE_DIR='"$(MODULE_DIR)"'
 
@@ -13,25 +13,27 @@ CFLAGS += -Wall -I../../include -I$(LTP_SRC)/include
 LDFLAGS += -L$(LTP_SRC)/lib
 LDLIBS += -lltp
 
-# Detecta todas las fuentes y  permite invocar objetos individuales
-SRCS := $(wildcard hwnet_io*.c)
-TARGETS := $(SRCS:.c=)
+# Declaración explícita de los binarios de prueba individuales
+TARGETS := hwnet_io01 hwnet_io02
 
 .PHONY: all clean symlink
 
-# Compila todo con 'make' o 'make all'
 all: symlink $(TARGETS)
 
-# regla implicita para compilar individualmente
 symlink:
-	@if [ -f (MODULE_DIR)/hwnet_io.ko ]; then \
+	@if [ -f $(MODULE_DIR)/hwnet_io.ko ]; then \
 		ln -sf $(MODULE_DIR)/hwnet_io.ko .; \
 	fi
 
-%: %.c	
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $< $(LDLIBS) -o $@
+# Reglas estrictamente aisladas para cada test
+hwnet_io01: hwnet_io01.o
+	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
+hwnet_io02: hwnet_io02.o
+	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
+%.o: %.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(TARGETS) *.ko *.o hwnet_io.ko

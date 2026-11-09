@@ -4,12 +4,23 @@
 #
 # ci-manifest.sh - Biblioteca de generación de manifiesto para build_state.env
 #
+MANIFEST_FILE="/var/log/BuilderLogs/hwnet-io/build_state.env"
 
 # Genera el manifiesto para entregables de tipo KO
 generate_ko_manifest() {
-    local manifest_file="$1"
-    local module_name="$2"
-    local module_ko_path="$3"
+    # echo "⚠️ ALERTA: generate_ko_manifest fue llamada. Pila:" >&2
+    # caller 0 >&2
+    # caller 1 || true >&2
+    local manifest_file="${USER_FILE:-${MANIFEST_FILE}}"
+    local module_name="$1"
+    local module_ko_path="$2"
+
+    # Declaración de Topología de Red para Preflight Check
+    local target_class="${TARGET_NET_CLASS:-C}"
+    local target_prefix="${TARGET_NET_PREFIX:-192.168.100}"
+    local router_ip="${ROUTER_IP:-192.168.100.1}"
+    local test_iface="${TEST_IFACE:-enp11s0}"
+    local sandbox_ip="${SANDBOX_IP:-}"
 
     # Purgado preventivo para asegurar atomicidad
     rm -f "${manifest_file}"
@@ -19,6 +30,11 @@ BUILD_STATUS="SUCCESS"
 TARGET_TYPE="KO"
 MODULE_NAME="${module_name}"
 MODULE_KO_PATH="${module_ko_path}"
+TARGET_NET_CLASS="${target_class}"
+TARGET_NET_PREFIX="${target_prefix}"
+ROUTER_IP="${router_ip}"
+TEST_IFACE="${test_iface}"
+SANDBOX_IP="${sandbox_ip}"
 TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 EOF
 
@@ -27,14 +43,25 @@ EOF
 
 # Genera el manifiesto para entregables de tipo LTP
 generate_ltp_manifest() {
-    local manifest_file="$1"
-    local runner_type="$2"
-    local test_name="$3"
-    local test_bin="$4"
-    local module_name="$5"
-    local module_ko_path="$6"
+    # echo "⚠️ ALERTA: generate_ltp_manifest fue llamada. Pila:" >&2
+    # caller 0 >&2
+    # caller 1 || true >&2
+    local manifest_file="${USER_FILE:-${MANIFEST_FILE}}"
 
-    # Purgado preventivo para asegurar atomicidad
+    # Variables de build y runner
+    local runner_type="${RUNNER_TYPE:-GENERIC}"
+    local test_name="${TEST_BINARY_NAME:-}"
+    local test_bin="${TEST_BINARY_PATH:-}"
+    local module_name="${MODULE_NAME:-}"
+    local module_ko_path="${MODULE_KO_PATH:-}"
+    
+    # Declaración de Topología de Red para Preflight
+    local target_class="${TARGET_NET_CLASS:-C}"
+    local target_prefix="${TARGET_NET_PREFIX:-192.168.100}"
+    local router_ip="${ROUTER_IP:-192.168.100.1}"
+    local test_iface="${TEST_IFACE:-enp11s0}"
+    local sandbox_ip="${SANDBOX_IP:-}"
+
     rm -f "${manifest_file}"
 
     cat <<EOF > "${manifest_file}"
@@ -45,6 +72,11 @@ TEST_BINARY_NAME="${test_name}"
 TEST_BINARY_PATH="${test_bin}"
 MODULE_NAME="${module_name}"
 MODULE_KO_PATH="${module_ko_path}"
+TARGET_NET_CLASS="${target_class}"
+TARGET_NET_PREFIX="${target_prefix}"
+ROUTER_IP="${router_ip}"
+TEST_IFACE="${test_iface}"
+SANDBOX_IP="${sandbox_ip}"
 TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 EOF
 

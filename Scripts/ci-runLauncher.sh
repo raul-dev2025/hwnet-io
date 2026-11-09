@@ -6,8 +6,10 @@
 #
 VM_NAME="acme-sandbox"
 SANDBOX_HOST="sandbox"
+TARGET_VMS=("sandbox" "router-node")
+NET_CHECK="Scripts/Tools/net-check.sh"
 REMOTE_SCRIPTS="/mnt/build-output/Repos/hwnet-io.git/Scripts"
-MANIFEST_FILE="/mnt/build-output/Repos/hwnet-io.git/build_state.env"
+MANIFEST_FILE="/var/log/BuilderLogs/hwnet-io/build_state.env"
 
 LOCAL_LOG_DIR="/mnt/datos_raul/Logs/Sandbox/hwnet-io"
 
@@ -16,20 +18,31 @@ echo "🚀 Arrancando entorno de pruebas (ACME, CIA)..."
 echo "==============================================="
 
 # 1. Arrancar vm y comprobar puerto 22
-if ! Scripts/Envs/vm-start.sh "${VM_NAME}"; then
+if ! Scripts/Envs/vm-start-lan.sh "${VM_NAME}"; then
   echo "❌ Error: Falla al iniciar la VM ${VM_NAME}. Abortando."
   exit 1
 fi
 
-if ! Scripts/Envs/vm-poll.sh "${SANDBOX_HOST}" 22 30; then
-    echo "❌ Error: La VM no levantó el servicio SSH a tiempo."
+for vm in "${TARGET_VMS[@]}"; do
+  if ! Scripts/Envs/vm-poll.sh "${vm}" 22 30; then
+      echo "❌ Error: La VM no levantó el servicio SSH a tiempo."
+      echo "🛑 Liberando infraestructura..."
+      echo "=============================================="
+      Scripts/Envs/vm-stop-lan.sh
+      exit 1
+  fi
+done
+
+# 2. Comprobaciones de red en Sandbox
+echo "📡 Verificando topología de red y conectividad L3..."
+if ! ssh "${SANDBOX_HOST}" "${REMOTE_SCRIPTS}/Tools/net-check.sh"; then
+    echo "❌ Error crítico en comprobación de red. Abortando pruebas."
     echo "🛑 Liberando infraestructura..."
-    echo "=============================================="
-    Scripts/Envs/vm-stop.sh "${VM_NAME}"
+    Scripts/Envs/vm-stop-lan.sh
     exit 1
 fi
 
-# 2. Consultar el manifiesto para determinar el log KO/LTP
+# 3. Consultar el manifiesto para determinar el log KO/LTP
 TARGET_TYPE=$(ssh "${SANDBOX_HOST}" "grep '^TARGET_TYPE=' '${MANIFEST_FILE}' | cut -d'=' -f2 | tr -d '\"'")
 RUNNER_TYPE=$(ssh "${SANDBOX_HOST}" "grep '^RUNNER_TYPE=' '${MANIFEST_FILE}' | cut -d'=' -f2 | tr -d '\"'")
 
@@ -46,19 +59,19 @@ REMOTE_LOG_PATH="/var/log/Sandbox/hwnet-io/${LOG_FILENAME}"
 
 echo "ℹ️ Target detectado: [${TARGET_TYPE:-DESCONOCIDO}]"
 
-# 3. Purgado defensivo de logs locales
+# 4. Purgado defensivo de logs locales
 mkdir -p "${LOCAL_LOG_DIR}"
 rm -f "${LOCAL_RUN_LOG}"
 
 
-# 4. Definición del Runner por RUNNER_TYPE
+# 5. Definición del Runner por RUNNER_TYPE
 if [ "${RUNNER_TYPE}" = "KMOD_TEST" ]; then
   RUNNER_SCRIPT="ci-kmod-runner.sh"
 else
   RUNNER_SCRIPT="ci-runner.sh"
 fi
 
-# 5. Invocación SSH con captura de salida y evaluación de retorno
+# 6. Invocación SSH con captura de salida y evaluación de retorno
 if ssh "${SANDBOX_HOST}" "${REMOTE_SCRIPTS}/${RUNNER_SCRIPT}"; then
     echo "✅ TEST RUNNER SUCCESSFUL [${RUNNER_SCRIPT}]"
 else
@@ -66,7 +79,7 @@ else
     EXEC_STATUS=1
 fi
 
-# Extraemos el log nativo generado dentro de la Sandbox
+# 7. Extraemos el log nativo generado dentro de la Sandbox
 if ssh "${SANDBOX_HOST}" "cat '${REMOTE_LOG_PATH}'" > "${LOCAL_RUN_LOG}" 2>/dev/null; then
     echo "📄 Log guardado correctamente en: ${LOCAL_RUN_LOG}"
 else
@@ -75,7 +88,7 @@ fi
 
 echo "🛑 Liberando infraestructura de compilación..."
 
-STOP_OUTPUT=$(Scripts/Envs/vm-stop.sh "${VM_NAME}")
+STOP_OUTPUT=$(Scripts/Envs/vm-stop-lan.sh)
 echo "${STOP_OUTPUT}"
 
 if echo "${STOP_OUTPUT}" | grep -q "apagada con éxito"; then
