@@ -32,9 +32,17 @@ static void setup(void)
 }
 
 static void check_hwnet_io_flags()
+typedef struct hwnet_ctx
 {
   int sock;
   struct ifreq ifr;
+  int initialized;
+} hwnet_ctx_t;
+
+static hwnet_ctx_t test_ctx = {
+    .sock = -1,
+    .initialized = 0};
+
 
   sock = socket(AF_INET, SOCK_DGRAM, 0);
   if (sock < 0)
