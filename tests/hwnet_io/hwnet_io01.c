@@ -26,9 +26,9 @@ static void setup(void)
   unsigned int ifindex = if_nametoindex("hwnet_io");
   if (ifindex == 0)
   {
-    tst_brk(TBROK, "La interfaz de red 'hwnet_io' no se registro");
+    tst_brk(TBROK, "The network interface 'hwnet_io' was not registered");
   }
-  tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
+  tst_res(TPASS, "Network interface 'hwnet_io' found: %u", ifindex);
 }
 
 typedef struct hwnet_ctx
@@ -57,7 +57,7 @@ static void check_hwnet_io_flags()
   test_ctx.sock = socket(AF_INET, SOCK_DGRAM, 0);
   if (test_ctx.sock < 0)
   {
-    tst_brk(TBROK | TERRNO, "Fallo al inicializar el socket de control [Codigo base: %d]",
+    tst_brk(TBROK | TERRNO, "Failed to initialize control socket [Base code: %d]",
             HWNET_IO_ERR_SOCKET_INIT);
   }
   memset(&test_ctx.ifr, 0, sizeof(test_ctx.ifr));
@@ -66,9 +66,10 @@ static void check_hwnet_io_flags()
   if (ioctl(test_ctx.sock, SIOCGIFFLAGS, &test_ctx.ifr) < 0)
   {
     cleanup();
-    tst_brk(TBROK | TERRNO, "Fallo en la operacion ioctl par la interfaz hwnet_io [Codigo base: %d]", HWNET_IO_ERR_IOCTL_FAILED);
+    tst_brk(TBROK | TERRNO, "Failed ioctl operation for hwnet_io interface [Base code: %d]",
+            HWNET_IO_ERR_IOCTL_FAILED);
   }
-  tst_res(TPASS, "Los flags de la interfaz hwnet_io se validaron correctamente.");
+  tst_res(TPASS, "The hwnet_io interface flags were successfully validated.");
   cleanup();
 }
 
