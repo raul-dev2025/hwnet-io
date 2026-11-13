@@ -53,6 +53,7 @@ static const struct net_device_ops hwnet_netdev_ops = {
 static void hwnet_setup(struct net_device *dev)
 {
   ether_setup(dev);
+  dev->mtu = 1500;
   dev->netdev_ops = &hwnet_netdev_ops;
   eth_hw_addr_random(dev);
 }
