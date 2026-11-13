@@ -48,7 +48,7 @@ static void cleanup(void)
   {
     close(test_ctx.sock);
     test_ctx.sock = -1;
-    tst_res(TPASS, "Socket descriptor closed.");
+    tst_res(TINFO, "Socket descriptor closed.");
   }
 }
 
@@ -65,7 +65,7 @@ static void check_hwnet_io_flags()
 
   if (ioctl(test_ctx.sock, SIOCGIFFLAGS, &test_ctx.ifr) < 0)
   {
-    cleanup();
+    // cleanup();
     tst_brk(TBROK | TERRNO, "Failed ioctl operation for hwnet_io interface [Base code: %d]",
             HWNET_IO_ERR_IOCTL_FAILED);
   }
