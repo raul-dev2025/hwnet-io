@@ -31,7 +31,6 @@ static void setup(void)
   tst_res(TPASS, "Interfaz de red 'hwnet_io' encontrada: %u", ifindex);
 }
 
-static void check_hwnet_io_flags()
 typedef struct hwnet_ctx
 {
   int sock;
@@ -43,28 +42,34 @@ static hwnet_ctx_t test_ctx = {
     .sock = -1,
     .initialized = 0};
 
+static void cleanup(void)
+{
+  if (test_ctx.sock >= 0)
+  {
+    close(test_ctx.sock);
+    test_ctx.sock = -1;
+    tst_res(TPASS, "Socket descriptor closed.");
+  }
+}
 
-  sock = socket(AF_INET, SOCK_DGRAM, 0);
-  if (sock < 0)
+static void check_hwnet_io_flags()
+{
+  test_ctx.sock = socket(AF_INET, SOCK_DGRAM, 0);
+  if (test_ctx.sock < 0)
   {
     tst_brk(TBROK | TERRNO, "Fallo al inicializar el socket de control [Codigo base: %d]",
             HWNET_IO_ERR_SOCKET_INIT);
   }
-  memset(&ifr, 0, sizeof(ifr));
-  strncpy(ifr.ifr_name, "hwnet_io", IFNAMSIZ - 1);
+  memset(&test_ctx.ifr, 0, sizeof(test_ctx.ifr));
+  strncpy(test_ctx.ifr.ifr_name, "hwnet_io", IFNAMSIZ - 1);
 
-  if (ioctl(sock, SIOCGIFFLAGS, &ifr) < 0)
+  if (ioctl(test_ctx.sock, SIOCGIFFLAGS, &test_ctx.ifr) < 0)
   {
-    close(sock);
+    cleanup();
     tst_brk(TBROK | TERRNO, "Fallo en la operacion ioctl par la interfaz hwnet_io [Codigo base: %d]", HWNET_IO_ERR_IOCTL_FAILED);
   }
-  close(sock);
   tst_res(TPASS, "Los flags de la interfaz hwnet_io se validaron correctamente.");
-}
-
-static void cleanup(void)
-{
-  tst_res(TINFO, "La tarea de Limpieza sucedera aqui.");
+  cleanup();
 }
 
 static void run_test(void)
