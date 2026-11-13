@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 /*
- * hwnet_io00.c - Template base para pruebas de red del driver hwnet_io
+ * hwnet_io01.c - Plantilla base para pruebas de red del driver hwnet_io
  *
  * Copyright (C) 2026 Raúl Vílchez Ruiz <raulmicrosistemas@gmail.com>
  */
